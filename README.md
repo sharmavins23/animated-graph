@@ -8,7 +8,7 @@ Variety.
 
 ## Part 1 - [Building a Graph](https://catlikecoding.com/unity/tutorials/basics/building-a-graph/)
 
-![img](img/graph.png)
+![img](img/simpleGraph.png)
 
 The first part of the project entails creating a graph of a sinusoidal wave that
 animates over time, instantiating points through a C# script and moving them on
