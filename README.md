@@ -6,6 +6,12 @@ This project is a follow-along of
 [Jasper Flick's Catlike Coding](https://catlikecoding.com/) Unity tutorial on
 [Building a Graph](https://catlikecoding.com/unity/tutorials/basics/building-a-graph/).
 
+![img](img/graph.png)
+
+This project entails creating a graph of a sinusoidal wave that animates over
+time, instantiating points through a C# script and moving them on an update
+loop. I've also added graphed axes as well.
+
 This project is distributed under the MIT license. This is a paraphrasing of a
 [short summary](https://tldrlegal.com/license/mit-license).
 
