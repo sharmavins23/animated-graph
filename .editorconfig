@@ -1,3 +1,7 @@
 #  CSharp formatting rules:
 [*.cs]
 csharp_new_line_before_open_brace = none
+
+# Shader formatting rules:
+[*.shader]
+csharp_new_line_before_open_brace = none
