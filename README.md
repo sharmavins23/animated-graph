@@ -2,6 +2,10 @@
 
 # License TL;DR
 
+This project is a follow-along of
+[Jasper Flick's Catlike Coding](https://catlikecoding.com/) Unity tutorial on
+[Building a Graph](https://catlikecoding.com/unity/tutorials/basics/building-a-graph/).
+
 This project is distributed under the MIT license. This is a paraphrasing of a
 [short summary](https://tldrlegal.com/license/mit-license).
 
