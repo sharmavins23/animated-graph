@@ -35,6 +35,9 @@ Speaking of 3D...
 | ![img](img/rippleXYZ.png)    | I love how this one 'drops' in a physical sense.                      |
 | ![img](img/crab.png)         | Extending the 'spider' to 3 dimensions returned to crab.              |
 
+The next portion moved on from the XZ plane into more interesting meshes and
+surfaces.
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
