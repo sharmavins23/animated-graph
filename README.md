@@ -8,12 +8,24 @@ Variety.
 
 ## Part 1 - [Building a Graph](https://catlikecoding.com/unity/tutorials/basics/building-a-graph/)
 
-![img](img/simpleGraph.png)
+![img](img/sineWave.png)
 
 The first part of the project entails creating a graph of a sinusoidal wave that
 animates over time, instantiating points through a C# script and moving them on
 an update loop. I've also added graphed axes as well. The project uses Universal
 Render Pipeline (URP) for speed-ups as well.
+
+## Part 2 - [Mathematical Surfaces](https://catlikecoding.com/unity/tutorials/basics/mathematical-surfaces/)
+
+This section starts off with implementing other waves:
+
+![img](img/multiWave.png)
+
+This wave is an addition of two sine waves.
+
+![img](img/rippleWave.png)
+
+A more complicated addition of sinusoidal waves.
 
 # License TL;DR
 
