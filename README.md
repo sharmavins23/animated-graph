@@ -63,6 +63,20 @@ Toroidal shapes were also added:
 | ![img](img/spiralStar.gif)     | Applying some funky time variance to the radii creates this beautiful optical illusion.        |
 | ![img](img/illusionRuined.gif) | Decreasing the resolution shows the star isn't spinning - It's just concentric stars rotating. |
 
+At this point I went off on a bit of a tangent implementing some other
+parametric surfaces.
+
+| Surface                       | Notes                                                                                                                                                                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![img](img/lineHelix.gif)     | This effect came about when looking for parametrized helixes.                                                                                                                                                           |
+| ![img](img/sinRS.gif)         | Wikipedia had a listing of Surfaces of Revolution, where any univariate function could be passed in to create an interesting effect. I tried it with sinusoids and got this bifurcated slinky pattern.                  |
+| ![img](img/cosRS.gif)         | Interestingly, trying this with cosine instead of sine combined the bifurcated pattern into concentric circles. Odd!                                                                                                    |
+| ![img](img/tanRS.gif)         | I can't say I _didn't_ expect something strange here, but I definitely wasn't let down. This is with the tangent function.                                                                                              |
+| ![img](img/secRS.gif)         | Trying again with the secant function bifurcated the entire surface. Neat!                                                                                                                                              |
+| ![img](img/tanStar.gif)       | I wanted to try applying tangents where they shouldn't be (by modifying the spiral star example). Needless to say... Nailed it.                                                                                         |
+| ![img](img/Enneper.gif)       | Moving back to actual surfaces, this is the [Enneper surface](https://en.wikipedia.org/wiki/Enneper_surface). I found it through a rabbit hole of Weierstrass functions when I was playing with Surfaces of Revolution. |
+| ![img](img/duplinCyclide.gif) | When trying to implement a Duplin Cyclide (Sort of a croissant shape?), I happened upon the hyperbolic variety. It's still pretty, so I figured I'd leave it in.                                                        |
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
