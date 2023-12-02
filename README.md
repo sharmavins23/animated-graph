@@ -89,6 +89,23 @@ here's a long GIF:
 
 ![img](img/morphograph.gif)
 
+## Part 4 - [Compute Shaders](https://catlikecoding.com/unity/tutorials/basics/compute-shaders/)
+
+With a resolution value of 100 (as in the previous images), the program was able
+to run at 100 FPS on my machine. This represents 10,000 points rendered, for a
+total of 20,000 batches on URP (once for each point drawn, and once for casting
+a shadow onto any other points). Increasing to 200 increases the batches to
+80,000 (40,000 points and 40,000 shadows), and decreases my machine's
+performance to 30 FPS.
+
+Increasing to 500 resolution drops my FPS further down to 5 FPS, which is
+practically unusable, only for a measly 250,000 points. However, I would prefer
+to run millions of points simultaneously, if possible.
+
+Currently, all points are sorted, batched, and calculated through C# scripts
+running on the CPU. Offloading this work onto the GPU would significantly speed
+up the task.
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
