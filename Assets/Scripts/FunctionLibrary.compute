@@ -1,0 +1,934 @@
+#pragma kernel WaveKernel
+#pragma kernel WaveToMultiWaveKernel
+#pragma kernel WaveToRippleKernel
+#pragma kernel WaveToSpiderKernel
+#pragma kernel WaveToSphereKernel
+#pragma kernel WaveToBouncyBallKernel
+#pragma kernel WaveToVerticalBandedSphereKernel
+#pragma kernel WaveToHorizontalBandedSphereKernel
+#pragma kernel WaveToTwistingSphereKernel
+#pragma kernel WaveToSpindleTorusKernel
+#pragma kernel WaveToRingTorusKernel
+#pragma kernel WaveToSpiralStarKernel
+#pragma kernel WaveToLineHelixKernel
+#pragma kernel WaveToSinRSKernel
+#pragma kernel WaveToCosRSKernel
+#pragma kernel WaveToTanRSKernel
+#pragma kernel WaveToSecRSKernel
+#pragma kernel WaveToTanStarKernel
+
+#pragma kernel MultiWaveToWaveKernel
+#pragma kernel MultiWaveKernel
+#pragma kernel MultiWaveToRippleKernel
+#pragma kernel MultiWaveToSpiderKernel
+#pragma kernel MultiWaveToSphereKernel
+#pragma kernel MultiWaveToBouncyBallKernel
+#pragma kernel MultiWaveToVerticalBandedSphereKernel
+#pragma kernel MultiWaveToHorizontalBandedSphereKernel
+#pragma kernel MultiWaveToTwistingSphereKernel
+#pragma kernel MultiWaveToSpindleTorusKernel
+#pragma kernel MultiWaveToRingTorusKernel
+#pragma kernel MultiWaveToSpiralStarKernel
+#pragma kernel MultiWaveToLineHelixKernel
+#pragma kernel MultiWaveToSinRSKernel
+#pragma kernel MultiWaveToCosRSKernel
+#pragma kernel MultiWaveToTanRSKernel
+#pragma kernel MultiWaveToSecRSKernel
+#pragma kernel MultiWaveToTanStarKernel
+
+#pragma kernel RippleToWaveKernel
+#pragma kernel RippleToMultiWaveKernel
+#pragma kernel RippleKernel
+#pragma kernel RippleToSpiderKernel
+#pragma kernel RippleToSphereKernel
+#pragma kernel RippleToBouncyBallKernel
+#pragma kernel RippleToVerticalBandedSphereKernel
+#pragma kernel RippleToHorizontalBandedSphereKernel
+#pragma kernel RippleToTwistingSphereKernel
+#pragma kernel RippleToSpindleTorusKernel
+#pragma kernel RippleToRingTorusKernel
+#pragma kernel RippleToSpiralStarKernel
+#pragma kernel RippleToLineHelixKernel
+#pragma kernel RippleToSinRSKernel
+#pragma kernel RippleToCosRSKernel
+#pragma kernel RippleToTanRSKernel
+#pragma kernel RippleToSecRSKernel
+#pragma kernel RippleToTanStarKernel
+
+#pragma kernel SpiderToWaveKernel
+#pragma kernel SpiderToMultiWaveKernel
+#pragma kernel SpiderToRippleKernel
+#pragma kernel SpiderKernel
+#pragma kernel SpiderToSphereKernel
+#pragma kernel SpiderToBouncyBallKernel
+#pragma kernel SpiderToVerticalBandedSphereKernel
+#pragma kernel SpiderToHorizontalBandedSphereKernel
+#pragma kernel SpiderToTwistingSphereKernel
+#pragma kernel SpiderToSpindleTorusKernel
+#pragma kernel SpiderToRingTorusKernel
+#pragma kernel SpiderToSpiralStarKernel
+#pragma kernel SpiderToLineHelixKernel
+#pragma kernel SpiderToSinRSKernel
+#pragma kernel SpiderToCosRSKernel
+#pragma kernel SpiderToTanRSKernel
+#pragma kernel SpiderToSecRSKernel
+#pragma kernel SpiderToTanStarKernel
+
+#pragma kernel SphereToWaveKernel
+#pragma kernel SphereToMultiWaveKernel
+#pragma kernel SphereToRippleKernel
+#pragma kernel SphereToSpiderKernel
+#pragma kernel SphereKernel
+#pragma kernel SphereToBouncyBallKernel
+#pragma kernel SphereToVerticalBandedSphereKernel
+#pragma kernel SphereToHorizontalBandedSphereKernel
+#pragma kernel SphereToTwistingSphereKernel
+#pragma kernel SphereToSpindleTorusKernel
+#pragma kernel SphereToRingTorusKernel
+#pragma kernel SphereToSpiralStarKernel
+#pragma kernel SphereToLineHelixKernel
+#pragma kernel SphereToSinRSKernel
+#pragma kernel SphereToCosRSKernel
+#pragma kernel SphereToTanRSKernel
+#pragma kernel SphereToSecRSKernel
+#pragma kernel SphereToTanStarKernel
+
+#pragma kernel BouncyBallToWaveKernel
+#pragma kernel BouncyBallToMultiWaveKernel
+#pragma kernel BouncyBallToRippleKernel
+#pragma kernel BouncyBallToSpiderKernel
+#pragma kernel BouncyBallToSphereKernel
+#pragma kernel BouncyBallKernel
+#pragma kernel BouncyBallToVerticalBandedSphereKernel
+#pragma kernel BouncyBallToHorizontalBandedSphereKernel
+#pragma kernel BouncyBallToTwistingSphereKernel
+#pragma kernel BouncyBallToSpindleTorusKernel
+#pragma kernel BouncyBallToRingTorusKernel
+#pragma kernel BouncyBallToSpiralStarKernel
+#pragma kernel BouncyBallToLineHelixKernel
+#pragma kernel BouncyBallToSinRSKernel
+#pragma kernel BouncyBallToCosRSKernel
+#pragma kernel BouncyBallToTanRSKernel
+#pragma kernel BouncyBallToSecRSKernel
+#pragma kernel BouncyBallToTanStarKernel
+
+#pragma kernel VerticalBandedSphereToWaveKernel
+#pragma kernel VerticalBandedSphereToMultiWaveKernel
+#pragma kernel VerticalBandedSphereToRippleKernel
+#pragma kernel VerticalBandedSphereToSpiderKernel
+#pragma kernel VerticalBandedSphereToSphereKernel
+#pragma kernel VerticalBandedSphereToBouncyBallKernel
+#pragma kernel VerticalBandedSphereKernel
+#pragma kernel VerticalBandedSphereToHorizontalBandedSphereKernel
+#pragma kernel VerticalBandedSphereToTwistingSphereKernel
+#pragma kernel VerticalBandedSphereToSpindleTorusKernel
+#pragma kernel VerticalBandedSphereToRingTorusKernel
+#pragma kernel VerticalBandedSphereToSpiralStarKernel
+#pragma kernel VerticalBandedSphereToLineHelixKernel
+#pragma kernel VerticalBandedSphereToSinRSKernel
+#pragma kernel VerticalBandedSphereToCosRSKernel
+#pragma kernel VerticalBandedSphereToTanRSKernel
+#pragma kernel VerticalBandedSphereToSecRSKernel
+#pragma kernel VerticalBandedSphereToTanStarKernel
+
+#pragma kernel HorizontalBandedSphereToWaveKernel
+#pragma kernel HorizontalBandedSphereToMultiWaveKernel
+#pragma kernel HorizontalBandedSphereToRippleKernel
+#pragma kernel HorizontalBandedSphereToSpiderKernel
+#pragma kernel HorizontalBandedSphereToSphereKernel
+#pragma kernel HorizontalBandedSphereToBouncyBallKernel
+#pragma kernel HorizontalBandedSphereToVerticalBandedSphereKernel
+#pragma kernel HorizontalBandedSphereKernel
+#pragma kernel HorizontalBandedSphereToTwistingSphereKernel
+#pragma kernel HorizontalBandedSphereToSpindleTorusKernel
+#pragma kernel HorizontalBandedSphereToRingTorusKernel
+#pragma kernel HorizontalBandedSphereToSpiralStarKernel
+#pragma kernel HorizontalBandedSphereToLineHelixKernel
+#pragma kernel HorizontalBandedSphereToSinRSKernel
+#pragma kernel HorizontalBandedSphereToCosRSKernel
+#pragma kernel HorizontalBandedSphereToTanRSKernel
+#pragma kernel HorizontalBandedSphereToSecRSKernel
+#pragma kernel HorizontalBandedSphereToTanStarKernel
+
+#pragma kernel TwistingSphereToWaveKernel
+#pragma kernel TwistingSphereToMultiWaveKernel
+#pragma kernel TwistingSphereToRippleKernel
+#pragma kernel TwistingSphereToSpiderKernel
+#pragma kernel TwistingSphereToSphereKernel
+#pragma kernel TwistingSphereToBouncyBallKernel
+#pragma kernel TwistingSphereToVerticalBandedSphereKernel
+#pragma kernel TwistingSphereToHorizontalBandedSphereKernel
+#pragma kernel TwistingSphereKernel
+#pragma kernel TwistingSphereToSpindleTorusKernel
+#pragma kernel TwistingSphereToRingTorusKernel
+#pragma kernel TwistingSphereToSpiralStarKernel
+#pragma kernel TwistingSphereToLineHelixKernel
+#pragma kernel TwistingSphereToSinRSKernel
+#pragma kernel TwistingSphereToCosRSKernel
+#pragma kernel TwistingSphereToTanRSKernel
+#pragma kernel TwistingSphereToSecRSKernel
+#pragma kernel TwistingSphereToTanStarKernel
+
+#pragma kernel SpindleTorusToWaveKernel
+#pragma kernel SpindleTorusToMultiWaveKernel
+#pragma kernel SpindleTorusToRippleKernel
+#pragma kernel SpindleTorusToSpiderKernel
+#pragma kernel SpindleTorusToSphereKernel
+#pragma kernel SpindleTorusToBouncyBallKernel
+#pragma kernel SpindleTorusToVerticalBandedSphereKernel
+#pragma kernel SpindleTorusToHorizontalBandedSphereKernel
+#pragma kernel SpindleTorusToTwistingSphereKernel
+#pragma kernel SpindleTorusKernel
+#pragma kernel SpindleTorusToRingTorusKernel
+#pragma kernel SpindleTorusToSpiralStarKernel
+#pragma kernel SpindleTorusToLineHelixKernel
+#pragma kernel SpindleTorusToSinRSKernel
+#pragma kernel SpindleTorusToCosRSKernel
+#pragma kernel SpindleTorusToTanRSKernel
+#pragma kernel SpindleTorusToSecRSKernel
+#pragma kernel SpindleTorusToTanStarKernel
+
+#pragma kernel RingTorusToWaveKernel
+#pragma kernel RingTorusToMultiWaveKernel
+#pragma kernel RingTorusToRippleKernel
+#pragma kernel RingTorusToSpiderKernel
+#pragma kernel RingTorusToSphereKernel
+#pragma kernel RingTorusToBouncyBallKernel
+#pragma kernel RingTorusToVerticalBandedSphereKernel
+#pragma kernel RingTorusToHorizontalBandedSphereKernel
+#pragma kernel RingTorusToTwistingSphereKernel
+#pragma kernel RingTorusToSpindleTorusKernel
+#pragma kernel RingTorusKernel
+#pragma kernel RingTorusToSpiralStarKernel
+#pragma kernel RingTorusToLineHelixKernel
+#pragma kernel RingTorusToSinRSKernel
+#pragma kernel RingTorusToCosRSKernel
+#pragma kernel RingTorusToTanRSKernel
+#pragma kernel RingTorusToSecRSKernel
+#pragma kernel RingTorusToTanStarKernel
+
+#pragma kernel SpiralStarToWaveKernel
+#pragma kernel SpiralStarToMultiWaveKernel
+#pragma kernel SpiralStarToRippleKernel
+#pragma kernel SpiralStarToSpiderKernel
+#pragma kernel SpiralStarToSphereKernel
+#pragma kernel SpiralStarToBouncyBallKernel
+#pragma kernel SpiralStarToVerticalBandedSphereKernel
+#pragma kernel SpiralStarToHorizontalBandedSphereKernel
+#pragma kernel SpiralStarToTwistingSphereKernel
+#pragma kernel SpiralStarToSpindleTorusKernel
+#pragma kernel SpiralStarToRingTorusKernel
+#pragma kernel SpiralStarKernel
+#pragma kernel SpiralStarToLineHelixKernel
+#pragma kernel SpiralStarToSinRSKernel
+#pragma kernel SpiralStarToCosRSKernel
+#pragma kernel SpiralStarToTanRSKernel
+#pragma kernel SpiralStarToSecRSKernel
+#pragma kernel SpiralStarToTanStarKernel
+
+#pragma kernel LineHelixToWaveKernel
+#pragma kernel LineHelixToMultiWaveKernel
+#pragma kernel LineHelixToRippleKernel
+#pragma kernel LineHelixToSpiderKernel
+#pragma kernel LineHelixToSphereKernel
+#pragma kernel LineHelixToBouncyBallKernel
+#pragma kernel LineHelixToVerticalBandedSphereKernel
+#pragma kernel LineHelixToHorizontalBandedSphereKernel
+#pragma kernel LineHelixToTwistingSphereKernel
+#pragma kernel LineHelixToSpindleTorusKernel
+#pragma kernel LineHelixToRingTorusKernel
+#pragma kernel LineHelixToSpiralStarKernel
+#pragma kernel LineHelixKernel
+#pragma kernel LineHelixToSinRSKernel
+#pragma kernel LineHelixToCosRSKernel
+#pragma kernel LineHelixToTanRSKernel
+#pragma kernel LineHelixToSecRSKernel
+#pragma kernel LineHelixToTanStarKernel
+
+#pragma kernel SinRSToWaveKernel
+#pragma kernel SinRSToMultiWaveKernel
+#pragma kernel SinRSToRippleKernel
+#pragma kernel SinRSToSpiderKernel
+#pragma kernel SinRSToSphereKernel
+#pragma kernel SinRSToBouncyBallKernel
+#pragma kernel SinRSToVerticalBandedSphereKernel
+#pragma kernel SinRSToHorizontalBandedSphereKernel
+#pragma kernel SinRSToTwistingSphereKernel
+#pragma kernel SinRSToSpindleTorusKernel
+#pragma kernel SinRSToRingTorusKernel
+#pragma kernel SinRSToSpiralStarKernel
+#pragma kernel SinRSToLineHelixKernel
+#pragma kernel SinRSKernel
+#pragma kernel SinRSToCosRSKernel
+#pragma kernel SinRSToTanRSKernel
+#pragma kernel SinRSToSecRSKernel
+#pragma kernel SinRSToTanStarKernel
+
+#pragma kernel CosRSToWaveKernel
+#pragma kernel CosRSToMultiWaveKernel
+#pragma kernel CosRSToRippleKernel
+#pragma kernel CosRSToSpiderKernel
+#pragma kernel CosRSToSphereKernel
+#pragma kernel CosRSToBouncyBallKernel
+#pragma kernel CosRSToVerticalBandedSphereKernel
+#pragma kernel CosRSToHorizontalBandedSphereKernel
+#pragma kernel CosRSToTwistingSphereKernel
+#pragma kernel CosRSToSpindleTorusKernel
+#pragma kernel CosRSToRingTorusKernel
+#pragma kernel CosRSToSpiralStarKernel
+#pragma kernel CosRSToLineHelixKernel
+#pragma kernel CosRSToSinRSKernel
+#pragma kernel CosRSKernel
+#pragma kernel CosRSToTanRSKernel
+#pragma kernel CosRSToSecRSKernel
+#pragma kernel CosRSToTanStarKernel
+
+#pragma kernel TanRSToWaveKernel
+#pragma kernel TanRSToMultiWaveKernel
+#pragma kernel TanRSToRippleKernel
+#pragma kernel TanRSToSpiderKernel
+#pragma kernel TanRSToSphereKernel
+#pragma kernel TanRSToBouncyBallKernel
+#pragma kernel TanRSToVerticalBandedSphereKernel
+#pragma kernel TanRSToHorizontalBandedSphereKernel
+#pragma kernel TanRSToTwistingSphereKernel
+#pragma kernel TanRSToSpindleTorusKernel
+#pragma kernel TanRSToRingTorusKernel
+#pragma kernel TanRSToSpiralStarKernel
+#pragma kernel TanRSToLineHelixKernel
+#pragma kernel TanRSToSinRSKernel
+#pragma kernel TanRSToCosRSKernel
+#pragma kernel TanRSKernel
+#pragma kernel TanRSToSecRSKernel
+#pragma kernel TanRSToTanStarKernel
+
+#pragma kernel SecRSToWaveKernel
+#pragma kernel SecRSToMultiWaveKernel
+#pragma kernel SecRSToRippleKernel
+#pragma kernel SecRSToSpiderKernel
+#pragma kernel SecRSToSphereKernel
+#pragma kernel SecRSToBouncyBallKernel
+#pragma kernel SecRSToVerticalBandedSphereKernel
+#pragma kernel SecRSToHorizontalBandedSphereKernel
+#pragma kernel SecRSToTwistingSphereKernel
+#pragma kernel SecRSToSpindleTorusKernel
+#pragma kernel SecRSToRingTorusKernel
+#pragma kernel SecRSToSpiralStarKernel
+#pragma kernel SecRSToLineHelixKernel
+#pragma kernel SecRSToSinRSKernel
+#pragma kernel SecRSToCosRSKernel
+#pragma kernel SecRSToTanRSKernel
+#pragma kernel SecRSKernel
+#pragma kernel SecRSToTanStarKernel
+
+#pragma kernel TanStarToWaveKernel
+#pragma kernel TanStarToMultiWaveKernel
+#pragma kernel TanStarToRippleKernel
+#pragma kernel TanStarToSpiderKernel
+#pragma kernel TanStarToSphereKernel
+#pragma kernel TanStarToBouncyBallKernel
+#pragma kernel TanStarToVerticalBandedSphereKernel
+#pragma kernel TanStarToHorizontalBandedSphereKernel
+#pragma kernel TanStarToTwistingSphereKernel
+#pragma kernel TanStarToSpindleTorusKernel
+#pragma kernel TanStarToRingTorusKernel
+#pragma kernel TanStarToSpiralStarKernel
+#pragma kernel TanStarToLineHelixKernel
+#pragma kernel TanStarToSinRSKernel
+#pragma kernel TanStarToCosRSKernel
+#pragma kernel TanStarToTanRSKernel
+#pragma kernel TanStarToSecRSKernel
+#pragma kernel TanStarKernel
+
+// ===== Constants and Globals =================================================
+
+#define PI 3.14159265358979323846264
+
+RWStructuredBuffer<float3> _Positions;
+uint _Resolution;
+float _Step;
+float _Time;
+float _TransitionProgress;
+
+// ===== Helper Functions ======================================================
+
+float2 GetUV(uint3 id) {
+    return (id.xy + 0.5) * _Step - 1.0;
+}
+
+void SetPosition(uint3 id, float3 position) {
+    if (id.x < _Resolution && id.y < _Resolution) {
+        _Positions[id.x + id.y * _Resolution] = position;
+    }
+}
+
+// ===== Graphed Objects =======================================================
+
+float3 Wave(float u, float v, float t) {
+    float3 p;
+
+    p.x = u;
+    p.y = sin(PI * (u + v + t));
+    p.z = v;
+
+    return p;
+}
+
+float3 MultiWave(float u, float v, float t) {
+    float3 p;
+
+    p.x = u;
+    float y = sin(PI * (u + 0.5 + t));
+    y += 0.5 * sin(2 * PI * (v + t));
+    y += sin(PI * (u + v + 0.25 * t));
+    p.y = y * (2.0 / 3.0);
+    p.z = v;
+
+    return p;
+}
+
+float3 Ripple(float u, float v, float t) {
+    float3 p;
+
+    p.x = u;
+    float d = sqrt(u * u + v * v);
+    float y = sin(PI * (4 * d - t));
+    p.y = y / (1 + 10 * d);
+    p.z = v;
+
+    return p;
+}
+
+float3 Spider(float u, float v, float t) {
+    float3 p;
+
+    p.x = u;
+    p.y = u * v * sin(PI * u * v * t);
+    p.z = v;
+
+    return p;
+}
+
+float3 Sphere(float u, float v, float t) {
+    float3 p;
+
+    float r = cos(0.5 * PI * v);
+    p.x = r * sin(PI * u);
+    p.y = sin(PI * 0.5 * v);
+    p.z = r * cos(PI * u);
+
+    return p;
+}
+
+float3 BouncyBall(float u, float v, float t) {
+    float3 p;
+
+    float r = 0.5 + 0.5 * sin(PI * t);
+    float s = r * cos(0.5 * PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * 0.5 * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+float3 VerticalBandedSphere(float u, float v, float t) {
+    float3 p;
+
+    float r = 0.9 + 0.1 * sin(8 * PI * u);
+    float s = r * cos(0.5 * PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * 0.5 * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+float3 HorizontalBandedSphere(float u, float v, float t) {
+    float3 p;
+
+    float r = 0.9 + 0.1 * sin(8 * PI * v);
+    float s = r * cos(0.5 * PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * 0.5 * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+float3 TwistingSphere(float u, float v, float t) {
+    float3 p;
+
+    float r = 0.9 + 0.1 * sin(PI * (6 * u + 4 * v + t));
+    float s = r * cos(0.5 * PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * 0.5 * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+float3 SpindleTorus(float u, float v, float t) {
+    float3 p;
+
+    float r = 1;
+    float s = 0.5 + r * cos(PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r * sin(PI * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+float3 RingTorus(float u, float v, float t) {
+    float3 p;
+
+    float r1 = 0.75;
+    float r2 = 0.25;
+    float s = r1 + r2 * cos(PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r2 * sin(PI * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+float3 SpiralStar(float u, float v, float t) {
+    float3 p;
+
+    float r1 = 0.7 + 0.1 * sin(PI * (6 * u + 0.5 * t));
+    float r2 = 0.15 + 0.05 * sin(PI * (8 * u + 4 * v + 2 * t));
+    float s = r1 + r2 * cos(PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r2 * sin(PI * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+float3 LineHelix(float u, float v, float t) {
+    float3 p;
+
+    p.x = u * cos(v * t);
+    p.y = u * sin(v * t);
+    p.z = v;
+
+    return p;
+}
+
+float3 SinRS(float u, float v, float t) {
+    float3 p;
+
+    p.x = u * ((1 - pow(v, 2)) / (1 + pow(v, 2)));
+    p.y = u * (2 * v / (1 + pow(v, 2)));
+    p.z = sin(5 * u * t);
+
+    return p;
+}
+
+float3 CosRS(float u, float v, float t) {
+    float3 p;
+
+    p.x = u * ((1 - pow(v, 2)) / (1 + pow(v, 2)));
+    p.y = u * (2 * v / (1 + pow(v, 2)));
+    p.z = cos(5 * u * t);
+
+    return p;
+}
+
+float3 TanRS(float u, float v, float t) {
+    float3 p;
+
+    p.x = u * ((1 - pow(v, 2)) / (1 + pow(v, 2)));
+    p.y = u * (2 * v / (1 + pow(v, 2)));
+    p.z = tan(u * t);
+
+    return p;
+}
+
+float3 SecRS(float u, float v, float t) {
+    float3 p;
+
+    p.x = u * ((1 - pow(v, 2)) / (1 + pow(v, 2)));
+    p.y = u * (2 * v / (1 + pow(v, 2)));
+    p.z = 1 / cos(u * t);
+
+    return p;
+}
+
+float3 TanStar(float u, float v, float t) {
+    float3 p;
+
+    float r1 = 0.7 + 0.1 * tan(PI * (u + 0.5 * t));
+    float r2 = 0.15 + 0.05 * tan(PI * (u + 4 * v + 2 * t));
+    float s = r1 + r2 * cos(PI * v);
+    p.x = s * sin(PI * u);
+    p.y = r2 * sin(PI * v);
+    p.z = s * cos(PI * u);
+
+    return p;
+}
+
+// ===== Kernel ================================================================
+
+#define KERNEL_FUNCTION(function) \
+    [numthreads(8, 8, 1)] \
+    void function##Kernel (uint3 id: SV_DispatchThreadID) { \
+        float2 uv = GetUV(id); \
+        SetPosition(id, function(uv.x, uv.y, _Time)); \
+    }
+
+KERNEL_FUNCTION(Wave)
+KERNEL_FUNCTION(MultiWave)
+KERNEL_FUNCTION(Ripple)
+KERNEL_FUNCTION(Spider)
+KERNEL_FUNCTION(Sphere)
+KERNEL_FUNCTION(BouncyBall)
+KERNEL_FUNCTION(VerticalBandedSphere)
+KERNEL_FUNCTION(HorizontalBandedSphere)
+KERNEL_FUNCTION(TwistingSphere)
+KERNEL_FUNCTION(SpindleTorus)
+KERNEL_FUNCTION(RingTorus)
+KERNEL_FUNCTION(SpiralStar)
+KERNEL_FUNCTION(LineHelix)
+KERNEL_FUNCTION(SinRS)
+KERNEL_FUNCTION(CosRS)
+KERNEL_FUNCTION(TanRS)
+KERNEL_FUNCTION(SecRS)
+KERNEL_FUNCTION(TanStar)
+
+#define KERNEL_MORPH_FUNCTION(functionA, functionB) \
+	[numthreads(8, 8, 1)] \
+	void functionA##To##functionB##Kernel (uint3 id: SV_DispatchThreadID) { \
+		float2 uv = GetUV(id); \
+		float3 position = lerp( \
+			functionA(uv.x, uv.y, _Time), \
+            functionB(uv.x, uv.y, _Time), \
+			_TransitionProgress \
+		); \
+		SetPosition(id, position); \
+	}
+
+KERNEL_MORPH_FUNCTION(Wave, MultiWave)
+KERNEL_MORPH_FUNCTION(Wave, Ripple)
+KERNEL_MORPH_FUNCTION(Wave, Spider)
+KERNEL_MORPH_FUNCTION(Wave, Sphere)
+KERNEL_MORPH_FUNCTION(Wave, BouncyBall)
+KERNEL_MORPH_FUNCTION(Wave, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(Wave, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(Wave, TwistingSphere)
+KERNEL_MORPH_FUNCTION(Wave, SpindleTorus)
+KERNEL_MORPH_FUNCTION(Wave, RingTorus)
+KERNEL_MORPH_FUNCTION(Wave, SpiralStar)
+KERNEL_MORPH_FUNCTION(Wave, LineHelix)
+KERNEL_MORPH_FUNCTION(Wave, SinRS)
+KERNEL_MORPH_FUNCTION(Wave, CosRS)
+KERNEL_MORPH_FUNCTION(Wave, TanRS)
+KERNEL_MORPH_FUNCTION(Wave, SecRS)
+KERNEL_MORPH_FUNCTION(Wave, TanStar)
+
+KERNEL_MORPH_FUNCTION(MultiWave, Wave)
+KERNEL_MORPH_FUNCTION(MultiWave, Ripple)
+KERNEL_MORPH_FUNCTION(MultiWave, Spider)
+KERNEL_MORPH_FUNCTION(MultiWave, Sphere)
+KERNEL_MORPH_FUNCTION(MultiWave, BouncyBall)
+KERNEL_MORPH_FUNCTION(MultiWave, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(MultiWave, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(MultiWave, TwistingSphere)
+KERNEL_MORPH_FUNCTION(MultiWave, SpindleTorus)
+KERNEL_MORPH_FUNCTION(MultiWave, RingTorus)
+KERNEL_MORPH_FUNCTION(MultiWave, SpiralStar)
+KERNEL_MORPH_FUNCTION(MultiWave, LineHelix)
+KERNEL_MORPH_FUNCTION(MultiWave, SinRS)
+KERNEL_MORPH_FUNCTION(MultiWave, CosRS)
+KERNEL_MORPH_FUNCTION(MultiWave, TanRS)
+KERNEL_MORPH_FUNCTION(MultiWave, SecRS)
+KERNEL_MORPH_FUNCTION(MultiWave, TanStar)
+
+KERNEL_MORPH_FUNCTION(Ripple, Wave)
+KERNEL_MORPH_FUNCTION(Ripple, MultiWave)
+KERNEL_MORPH_FUNCTION(Ripple, Spider)
+KERNEL_MORPH_FUNCTION(Ripple, Sphere)
+KERNEL_MORPH_FUNCTION(Ripple, BouncyBall)
+KERNEL_MORPH_FUNCTION(Ripple, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(Ripple, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(Ripple, TwistingSphere)
+KERNEL_MORPH_FUNCTION(Ripple, SpindleTorus)
+KERNEL_MORPH_FUNCTION(Ripple, RingTorus)
+KERNEL_MORPH_FUNCTION(Ripple, SpiralStar)
+KERNEL_MORPH_FUNCTION(Ripple, LineHelix)
+KERNEL_MORPH_FUNCTION(Ripple, SinRS)
+KERNEL_MORPH_FUNCTION(Ripple, CosRS)
+KERNEL_MORPH_FUNCTION(Ripple, TanRS)
+KERNEL_MORPH_FUNCTION(Ripple, SecRS)
+KERNEL_MORPH_FUNCTION(Ripple, TanStar)
+
+KERNEL_MORPH_FUNCTION(Spider, Wave)
+KERNEL_MORPH_FUNCTION(Spider, MultiWave)
+KERNEL_MORPH_FUNCTION(Spider, Ripple)
+KERNEL_MORPH_FUNCTION(Spider, Sphere)
+KERNEL_MORPH_FUNCTION(Spider, BouncyBall)
+KERNEL_MORPH_FUNCTION(Spider, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(Spider, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(Spider, TwistingSphere)
+KERNEL_MORPH_FUNCTION(Spider, SpindleTorus)
+KERNEL_MORPH_FUNCTION(Spider, RingTorus)
+KERNEL_MORPH_FUNCTION(Spider, SpiralStar)
+KERNEL_MORPH_FUNCTION(Spider, LineHelix)
+KERNEL_MORPH_FUNCTION(Spider, SinRS)
+KERNEL_MORPH_FUNCTION(Spider, CosRS)
+KERNEL_MORPH_FUNCTION(Spider, TanRS)
+KERNEL_MORPH_FUNCTION(Spider, SecRS)
+KERNEL_MORPH_FUNCTION(Spider, TanStar)
+
+KERNEL_MORPH_FUNCTION(Sphere, Wave)
+KERNEL_MORPH_FUNCTION(Sphere, MultiWave)
+KERNEL_MORPH_FUNCTION(Sphere, Ripple)
+KERNEL_MORPH_FUNCTION(Sphere, Spider)
+KERNEL_MORPH_FUNCTION(Sphere, BouncyBall)
+KERNEL_MORPH_FUNCTION(Sphere, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(Sphere, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(Sphere, TwistingSphere)
+KERNEL_MORPH_FUNCTION(Sphere, SpindleTorus)
+KERNEL_MORPH_FUNCTION(Sphere, RingTorus)
+KERNEL_MORPH_FUNCTION(Sphere, SpiralStar)
+KERNEL_MORPH_FUNCTION(Sphere, LineHelix)
+KERNEL_MORPH_FUNCTION(Sphere, SinRS)
+KERNEL_MORPH_FUNCTION(Sphere, CosRS)
+KERNEL_MORPH_FUNCTION(Sphere, TanRS)
+KERNEL_MORPH_FUNCTION(Sphere, SecRS)
+KERNEL_MORPH_FUNCTION(Sphere, TanStar)
+
+KERNEL_MORPH_FUNCTION(BouncyBall, Wave)
+KERNEL_MORPH_FUNCTION(BouncyBall, MultiWave)
+KERNEL_MORPH_FUNCTION(BouncyBall, Ripple)
+KERNEL_MORPH_FUNCTION(BouncyBall, Spider)
+KERNEL_MORPH_FUNCTION(BouncyBall, Sphere)
+KERNEL_MORPH_FUNCTION(BouncyBall, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(BouncyBall, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(BouncyBall, TwistingSphere)
+KERNEL_MORPH_FUNCTION(BouncyBall, SpindleTorus)
+KERNEL_MORPH_FUNCTION(BouncyBall, RingTorus)
+KERNEL_MORPH_FUNCTION(BouncyBall, SpiralStar)
+KERNEL_MORPH_FUNCTION(BouncyBall, LineHelix)
+KERNEL_MORPH_FUNCTION(BouncyBall, SinRS)
+KERNEL_MORPH_FUNCTION(BouncyBall, CosRS)
+KERNEL_MORPH_FUNCTION(BouncyBall, TanRS)
+KERNEL_MORPH_FUNCTION(BouncyBall, SecRS)
+KERNEL_MORPH_FUNCTION(BouncyBall, TanStar)
+
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, Wave)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, MultiWave)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, Ripple)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, Spider)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, Sphere)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, BouncyBall)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, TwistingSphere)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, SpindleTorus)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, RingTorus)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, SpiralStar)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, LineHelix)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, SinRS)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, CosRS)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, TanRS)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, SecRS)
+KERNEL_MORPH_FUNCTION(VerticalBandedSphere, TanStar)
+
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, Wave)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, MultiWave)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, Ripple)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, Spider)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, Sphere)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, BouncyBall)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, TwistingSphere)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, SpindleTorus)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, RingTorus)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, SpiralStar)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, LineHelix)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, SinRS)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, CosRS)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, TanRS)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, SecRS)
+KERNEL_MORPH_FUNCTION(HorizontalBandedSphere, TanStar)
+
+KERNEL_MORPH_FUNCTION(TwistingSphere, Wave)
+KERNEL_MORPH_FUNCTION(TwistingSphere, MultiWave)
+KERNEL_MORPH_FUNCTION(TwistingSphere, Ripple)
+KERNEL_MORPH_FUNCTION(TwistingSphere, Spider)
+KERNEL_MORPH_FUNCTION(TwistingSphere, Sphere)
+KERNEL_MORPH_FUNCTION(TwistingSphere, BouncyBall)
+KERNEL_MORPH_FUNCTION(TwistingSphere, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(TwistingSphere, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(TwistingSphere, SpindleTorus)
+KERNEL_MORPH_FUNCTION(TwistingSphere, RingTorus)
+KERNEL_MORPH_FUNCTION(TwistingSphere, SpiralStar)
+KERNEL_MORPH_FUNCTION(TwistingSphere, LineHelix)
+KERNEL_MORPH_FUNCTION(TwistingSphere, SinRS)
+KERNEL_MORPH_FUNCTION(TwistingSphere, CosRS)
+KERNEL_MORPH_FUNCTION(TwistingSphere, TanRS)
+KERNEL_MORPH_FUNCTION(TwistingSphere, SecRS)
+KERNEL_MORPH_FUNCTION(TwistingSphere, TanStar)
+
+KERNEL_MORPH_FUNCTION(SpindleTorus, Wave)
+KERNEL_MORPH_FUNCTION(SpindleTorus, MultiWave)
+KERNEL_MORPH_FUNCTION(SpindleTorus, Ripple)
+KERNEL_MORPH_FUNCTION(SpindleTorus, Spider)
+KERNEL_MORPH_FUNCTION(SpindleTorus, Sphere)
+KERNEL_MORPH_FUNCTION(SpindleTorus, BouncyBall)
+KERNEL_MORPH_FUNCTION(SpindleTorus, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(SpindleTorus, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(SpindleTorus, TwistingSphere)
+KERNEL_MORPH_FUNCTION(SpindleTorus, RingTorus)
+KERNEL_MORPH_FUNCTION(SpindleTorus, SpiralStar)
+KERNEL_MORPH_FUNCTION(SpindleTorus, LineHelix)
+KERNEL_MORPH_FUNCTION(SpindleTorus, SinRS)
+KERNEL_MORPH_FUNCTION(SpindleTorus, CosRS)
+KERNEL_MORPH_FUNCTION(SpindleTorus, TanRS)
+KERNEL_MORPH_FUNCTION(SpindleTorus, SecRS)
+KERNEL_MORPH_FUNCTION(SpindleTorus, TanStar)
+
+KERNEL_MORPH_FUNCTION(RingTorus, Wave)
+KERNEL_MORPH_FUNCTION(RingTorus, MultiWave)
+KERNEL_MORPH_FUNCTION(RingTorus, Ripple)
+KERNEL_MORPH_FUNCTION(RingTorus, Spider)
+KERNEL_MORPH_FUNCTION(RingTorus, Sphere)
+KERNEL_MORPH_FUNCTION(RingTorus, BouncyBall)
+KERNEL_MORPH_FUNCTION(RingTorus, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(RingTorus, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(RingTorus, TwistingSphere)
+KERNEL_MORPH_FUNCTION(RingTorus, SpindleTorus)
+KERNEL_MORPH_FUNCTION(RingTorus, SpiralStar)
+KERNEL_MORPH_FUNCTION(RingTorus, LineHelix)
+KERNEL_MORPH_FUNCTION(RingTorus, SinRS)
+KERNEL_MORPH_FUNCTION(RingTorus, CosRS)
+KERNEL_MORPH_FUNCTION(RingTorus, TanRS)
+KERNEL_MORPH_FUNCTION(RingTorus, SecRS)
+KERNEL_MORPH_FUNCTION(RingTorus, TanStar)
+
+KERNEL_MORPH_FUNCTION(SpiralStar, Wave)
+KERNEL_MORPH_FUNCTION(SpiralStar, MultiWave)
+KERNEL_MORPH_FUNCTION(SpiralStar, Ripple)
+KERNEL_MORPH_FUNCTION(SpiralStar, Spider)
+KERNEL_MORPH_FUNCTION(SpiralStar, Sphere)
+KERNEL_MORPH_FUNCTION(SpiralStar, BouncyBall)
+KERNEL_MORPH_FUNCTION(SpiralStar, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(SpiralStar, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(SpiralStar, TwistingSphere)
+KERNEL_MORPH_FUNCTION(SpiralStar, SpindleTorus)
+KERNEL_MORPH_FUNCTION(SpiralStar, RingTorus)
+KERNEL_MORPH_FUNCTION(SpiralStar, LineHelix)
+KERNEL_MORPH_FUNCTION(SpiralStar, SinRS)
+KERNEL_MORPH_FUNCTION(SpiralStar, CosRS)
+KERNEL_MORPH_FUNCTION(SpiralStar, TanRS)
+KERNEL_MORPH_FUNCTION(SpiralStar, SecRS)
+KERNEL_MORPH_FUNCTION(SpiralStar, TanStar)
+
+KERNEL_MORPH_FUNCTION(LineHelix, Wave)
+KERNEL_MORPH_FUNCTION(LineHelix, MultiWave)
+KERNEL_MORPH_FUNCTION(LineHelix, Ripple)
+KERNEL_MORPH_FUNCTION(LineHelix, Spider)
+KERNEL_MORPH_FUNCTION(LineHelix, Sphere)
+KERNEL_MORPH_FUNCTION(LineHelix, BouncyBall)
+KERNEL_MORPH_FUNCTION(LineHelix, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(LineHelix, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(LineHelix, TwistingSphere)
+KERNEL_MORPH_FUNCTION(LineHelix, SpindleTorus)
+KERNEL_MORPH_FUNCTION(LineHelix, RingTorus)
+KERNEL_MORPH_FUNCTION(LineHelix, SpiralStar)
+KERNEL_MORPH_FUNCTION(LineHelix, SinRS)
+KERNEL_MORPH_FUNCTION(LineHelix, CosRS)
+KERNEL_MORPH_FUNCTION(LineHelix, TanRS)
+KERNEL_MORPH_FUNCTION(LineHelix, SecRS)
+KERNEL_MORPH_FUNCTION(LineHelix, TanStar)
+
+KERNEL_MORPH_FUNCTION(SinRS, Wave)
+KERNEL_MORPH_FUNCTION(SinRS, MultiWave)
+KERNEL_MORPH_FUNCTION(SinRS, Ripple)
+KERNEL_MORPH_FUNCTION(SinRS, Spider)
+KERNEL_MORPH_FUNCTION(SinRS, Sphere)
+KERNEL_MORPH_FUNCTION(SinRS, BouncyBall)
+KERNEL_MORPH_FUNCTION(SinRS, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(SinRS, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(SinRS, TwistingSphere)
+KERNEL_MORPH_FUNCTION(SinRS, SpindleTorus)
+KERNEL_MORPH_FUNCTION(SinRS, RingTorus)
+KERNEL_MORPH_FUNCTION(SinRS, SpiralStar)
+KERNEL_MORPH_FUNCTION(SinRS, LineHelix)
+KERNEL_MORPH_FUNCTION(SinRS, CosRS)
+KERNEL_MORPH_FUNCTION(SinRS, TanRS)
+KERNEL_MORPH_FUNCTION(SinRS, SecRS)
+KERNEL_MORPH_FUNCTION(SinRS, TanStar)
+
+KERNEL_MORPH_FUNCTION(CosRS, Wave)
+KERNEL_MORPH_FUNCTION(CosRS, MultiWave)
+KERNEL_MORPH_FUNCTION(CosRS, Ripple)
+KERNEL_MORPH_FUNCTION(CosRS, Spider)
+KERNEL_MORPH_FUNCTION(CosRS, Sphere)
+KERNEL_MORPH_FUNCTION(CosRS, BouncyBall)
+KERNEL_MORPH_FUNCTION(CosRS, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(CosRS, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(CosRS, TwistingSphere)
+KERNEL_MORPH_FUNCTION(CosRS, SpindleTorus)
+KERNEL_MORPH_FUNCTION(CosRS, RingTorus)
+KERNEL_MORPH_FUNCTION(CosRS, SpiralStar)
+KERNEL_MORPH_FUNCTION(CosRS, LineHelix)
+KERNEL_MORPH_FUNCTION(CosRS, SinRS)
+KERNEL_MORPH_FUNCTION(CosRS, TanRS)
+KERNEL_MORPH_FUNCTION(CosRS, SecRS)
+KERNEL_MORPH_FUNCTION(CosRS, TanStar)
+
+KERNEL_MORPH_FUNCTION(TanRS, Wave)
+KERNEL_MORPH_FUNCTION(TanRS, MultiWave)
+KERNEL_MORPH_FUNCTION(TanRS, Ripple)
+KERNEL_MORPH_FUNCTION(TanRS, Spider)
+KERNEL_MORPH_FUNCTION(TanRS, Sphere)
+KERNEL_MORPH_FUNCTION(TanRS, BouncyBall)
+KERNEL_MORPH_FUNCTION(TanRS, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(TanRS, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(TanRS, TwistingSphere)
+KERNEL_MORPH_FUNCTION(TanRS, SpindleTorus)
+KERNEL_MORPH_FUNCTION(TanRS, RingTorus)
+KERNEL_MORPH_FUNCTION(TanRS, SpiralStar)
+KERNEL_MORPH_FUNCTION(TanRS, LineHelix)
+KERNEL_MORPH_FUNCTION(TanRS, SinRS)
+KERNEL_MORPH_FUNCTION(TanRS, CosRS)
+KERNEL_MORPH_FUNCTION(TanRS, SecRS)
+KERNEL_MORPH_FUNCTION(TanRS, TanStar)
+
+KERNEL_MORPH_FUNCTION(SecRS, Wave)
+KERNEL_MORPH_FUNCTION(SecRS, MultiWave)
+KERNEL_MORPH_FUNCTION(SecRS, Ripple)
+KERNEL_MORPH_FUNCTION(SecRS, Spider)
+KERNEL_MORPH_FUNCTION(SecRS, Sphere)
+KERNEL_MORPH_FUNCTION(SecRS, BouncyBall)
+KERNEL_MORPH_FUNCTION(SecRS, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(SecRS, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(SecRS, TwistingSphere)
+KERNEL_MORPH_FUNCTION(SecRS, SpindleTorus)
+KERNEL_MORPH_FUNCTION(SecRS, RingTorus)
+KERNEL_MORPH_FUNCTION(SecRS, SpiralStar)
+KERNEL_MORPH_FUNCTION(SecRS, LineHelix)
+KERNEL_MORPH_FUNCTION(SecRS, SinRS)
+KERNEL_MORPH_FUNCTION(SecRS, CosRS)
+KERNEL_MORPH_FUNCTION(SecRS, TanRS)
+KERNEL_MORPH_FUNCTION(SecRS, TanStar)
+
+KERNEL_MORPH_FUNCTION(TanStar, Wave)
+KERNEL_MORPH_FUNCTION(TanStar, MultiWave)
+KERNEL_MORPH_FUNCTION(TanStar, Ripple)
+KERNEL_MORPH_FUNCTION(TanStar, Spider)
+KERNEL_MORPH_FUNCTION(TanStar, Sphere)
+KERNEL_MORPH_FUNCTION(TanStar, BouncyBall)
+KERNEL_MORPH_FUNCTION(TanStar, VerticalBandedSphere)
+KERNEL_MORPH_FUNCTION(TanStar, HorizontalBandedSphere)
+KERNEL_MORPH_FUNCTION(TanStar, TwistingSphere)
+KERNEL_MORPH_FUNCTION(TanStar, SpindleTorus)
+KERNEL_MORPH_FUNCTION(TanStar, RingTorus)
+KERNEL_MORPH_FUNCTION(TanStar, SpiralStar)
+KERNEL_MORPH_FUNCTION(TanStar, LineHelix)
+KERNEL_MORPH_FUNCTION(TanStar, SinRS)
+KERNEL_MORPH_FUNCTION(TanStar, CosRS)
+KERNEL_MORPH_FUNCTION(TanStar, TanRS)
+KERNEL_MORPH_FUNCTION(TanStar, SecRS)

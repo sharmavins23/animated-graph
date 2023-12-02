@@ -106,6 +106,16 @@ Currently, all points are sorted, batched, and calculated through C# scripts
 running on the CPU. Offloading this work onto the GPU would significantly speed
 up the task.
 
+When swapping over materials, I realized that URP (while saving performance) is
+extremely finicky to set up. However, I was successfully able to port functions
+over to the GPU. As such, we can view them in much higher resolution:
+
+| GIF                        | Notes                                                                                                                                                                                                            |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![img](img/LowRes-GPU.gif) | Running at a resolution of 10, or 100 cubes. This runs at ~1000 FPS on my machine's GPU.                                                                                                                         |
+| ![img](img/GPU100.gif)     | Running at a resolution of 100, or 10,000 cubes, this runs at ~950 FPS on my machine's GPU. Clearly, the CPU is the bottleneck at high framerates.                                                               |
+| ![img](img/GPU1000.gif)    | Running at a resolution of 1000, or 1 million cubes, this runs at ~400 FPS on my machine's GPU. Beefy! The visuals are hampered by the small point size, though, giving the image an unfortunately 'dusty' look. |
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a

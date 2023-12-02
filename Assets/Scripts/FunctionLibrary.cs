@@ -22,9 +22,9 @@ public static class FunctionLibrary {
         CosRS,
         TanRS,
         SecRS,
-        TanStar,
-        Enneper,
-        DuplinCyclide
+        TanStar
+        // Enneper, // Disabled for GPU
+        // DuplinCyclide
     };
     public enum FunctionName {
         Wave,
@@ -44,18 +44,17 @@ public static class FunctionLibrary {
         CosRS,
         TanRS,
         SecRS,
-        TanStar,
-        Enneper,
-        DuplinCyclide
+        TanStar
+        // Enneper,
+        // DuplinCyclide
     };
 
-    public static Function GetFunction(FunctionName name) {
-        return functions[(int)name];
-    }
+    public static int FunctionCount => functions.Length;
 
-    public static FunctionName GetNextFunctionName(FunctionName name) {
-        return (FunctionName)(((int)name + 1) % functions.Length);
-    }
+    public static Function GetFunction(FunctionName name) => functions[(int)name];
+
+
+    public static FunctionName GetNextFunctionName(FunctionName name) => (int)name < functions.Length - 1 ? name + 1 : 0;
 
     public static FunctionName GetRandomFunctionNameOtherThan(FunctionName name) {
         Assert.IsTrue(functions.Length > 1, "Not enough functions to choose from.");
@@ -69,6 +68,8 @@ public static class FunctionLibrary {
     public static Vector3 Morph(float u, float v, float t, Function from, Function to, float progress) {
         return Vector3.LerpUnclamped(from(u, v, t), to(u, v, t), SmoothStep(0f, 1f, progress));
     }
+
+    // ===== Graphed Objects ===================================================
 
     public static Vector3 Wave(float u, float v, float t) {
         Vector3 p;

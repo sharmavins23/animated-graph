@@ -1,14 +1,13 @@
 using System;
-using System.IO.Compression;
 using UnityEngine;
 
 public class Graph : MonoBehaviour {
     [SerializeField] Transform pointPrefab;
     [SerializeField, Range(10, 500)] int resolution = 100;
     [SerializeField] FunctionLibrary.FunctionName function;
-    [SerializeField, Min(0f)] float functionDuration = 1f, transitionDuration = 1f;
     public enum TransitionMode { Pick, Cycle, Random };
     [SerializeField] TransitionMode transitionMode;
+    [SerializeField, Min(0f)] float functionDuration = 1f, transitionDuration = 1f;
 
     Transform[] points;
     float duration;
