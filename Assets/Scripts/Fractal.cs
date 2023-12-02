@@ -6,6 +6,8 @@ public class Fractal : MonoBehaviour {
     [SerializeField] Mesh mesh;
     [SerializeField] Material material;
 
+    static MaterialPropertyBlock propertyBlock;
+
     static Vector3[] directions = {
         Vector3.up,
         Vector3.right,
@@ -22,65 +24,101 @@ public class Fractal : MonoBehaviour {
     };
     struct FractalPart {
         public Vector3 direction;
+        public Vector3 worldPosition;
         public Quaternion rotation;
-        public Transform transform;
+        public Quaternion worldRotation;
+        public float spinAngle;
     }
 
     FractalPart[][] parts;
+    Matrix4x4[][] matrices;
+    ComputeBuffer[] matricesBuffers;
 
-    void Start() {
+    static readonly int matricesID = Shader.PropertyToID("_Matrices");
+
+    void OnEnable() {
         parts = new FractalPart[depth][];
+        matrices = new Matrix4x4[depth][];
+        matricesBuffers = new ComputeBuffer[depth];
+
+        int stride = 16 * sizeof(float);
         for (int i = 0, length = 1; i < parts.Length; i++, length *= 5) {
             parts[i] = new FractalPart[length];
+            matrices[i] = new Matrix4x4[length];
+            matricesBuffers[i] = new ComputeBuffer(length, stride);
         }
 
-        float scale = 1f;
-        parts[0][0] = CreatePart(0, 0, scale);
+        parts[0][0] = CreatePart(0);
         for (int li = 1; li < parts.Length; li++) {
-            scale *= 0.5f;
             FractalPart[] levelParts = parts[li];
 
             for (int fpi = 0; fpi < levelParts.Length; fpi += 5) {
-                for (int ci = 0; ci < 5; ci++) levelParts[fpi + ci] = CreatePart(li, ci, scale);
+                for (int ci = 0; ci < 5; ci++) levelParts[fpi + ci] = CreatePart(ci);
             }
+        }
+
+        propertyBlock ??= new MaterialPropertyBlock();
+    }
+
+    void OnDisable() {
+        for (int i = 0; i < matricesBuffers.Length; i++) {
+            matricesBuffers[i].Release();
+        }
+        matricesBuffers = null;
+        matrices = null;
+        parts = null;
+    }
+
+    void OnValidate() {
+        if (parts != null && enabled) {
+            OnDisable();
+            OnEnable();
         }
     }
 
     void Update() {
-        Quaternion deltaRotation = Quaternion.Euler(0f, 22.5f * Time.deltaTime, 0f);
+        float spinAngleDelta = 22.5f * Time.deltaTime;
 
         FractalPart rootPart = parts[0][0];
-        rootPart.rotation *= deltaRotation;
-        rootPart.transform.localRotation = rootPart.rotation;
+        rootPart.spinAngle += spinAngleDelta;
+        rootPart.worldRotation = transform.rotation * (rootPart.rotation * Quaternion.Euler(0f, rootPart.spinAngle, 0f));
+        rootPart.worldPosition = transform.position;
         parts[0][0] = rootPart;
+        float objectScale = transform.lossyScale.x;
+        matrices[0][0] = Matrix4x4.TRS(rootPart.worldPosition, rootPart.worldRotation, objectScale * Vector3.one);
 
+        float scale = objectScale;
         for (int li = 1; li < parts.Length; li++) {
+            scale *= 0.5f;
             FractalPart[] parentParts = parts[li - 1];
             FractalPart[] levelParts = parts[li];
+            Matrix4x4[] levelMatrices = matrices[li];
+
             for (int fpi = 0; fpi < levelParts.Length; fpi++) {
-                Transform parentTransform = parentParts[fpi / 5].transform;
+                FractalPart parent = parentParts[fpi / 5];
                 FractalPart part = levelParts[fpi];
-                part.rotation *= deltaRotation;
-                part.transform.localRotation = part.rotation * parentTransform.localRotation;
-                part.transform.localPosition = parentTransform.localPosition + parentTransform.localRotation * (1.5f * part.transform.localScale.x * part.direction);
+
+                part.spinAngle += spinAngleDelta;
+                part.worldRotation = parent.worldRotation * (part.rotation * Quaternion.Euler(0f, part.spinAngle, 0f));
+                part.worldPosition = parent.worldPosition + parent.worldRotation * (1.5f * scale * part.direction);
                 levelParts[fpi] = part;
+
+                levelMatrices[fpi] = Matrix4x4.TRS(part.worldPosition, part.worldRotation, scale * Vector3.one);
             }
+        }
+
+        // Upload matrices to the GPU
+        Bounds bounds = new(rootPart.worldPosition, 3f * objectScale * Vector3.one);
+        for (int i = 0; i < matricesBuffers.Length; i++) {
+            ComputeBuffer buffer = matricesBuffers[i];
+            buffer.SetData(matrices[i]);
+            propertyBlock.SetBuffer(matricesID, buffer);
+            Graphics.DrawMeshInstancedProcedural(mesh, 0, material, bounds, buffer.count, propertyBlock);
         }
     }
 
-    FractalPart CreatePart(int levelIndex, int childIndex, float scale) {
-        GameObject gameObject = new("Fractal Part L" + levelIndex + " C" + childIndex);
-        gameObject.transform.SetParent(transform, false);
-
-        gameObject.transform.localScale = scale * Vector3.one;
-
-        gameObject.AddComponent<MeshFilter>().mesh = mesh;
-        gameObject.AddComponent<MeshRenderer>().material = material;
-
-        return new FractalPart {
-            direction = directions[childIndex],
-            rotation = rotations[childIndex],
-            transform = gameObject.transform
-        };
-    }
+    FractalPart CreatePart(int childIndex) => new FractalPart {
+        direction = directions[childIndex],
+        rotation = rotations[childIndex]
+    };
 }

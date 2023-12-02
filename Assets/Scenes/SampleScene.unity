@@ -463,6 +463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 7
+  mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: eac7cd3d565bf7242bff57d78eb2cfe0, type: 2}
 --- !u!23 &1303473897
 MeshRenderer:
   m_ObjectHideFlags: 0

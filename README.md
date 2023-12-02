@@ -153,10 +153,12 @@ degrades quickly. This problem exacerbates with rotations on fractals:
 At a depth of 7, or 19,531 objects, this cuts the FPS down from 69 to 40 on my
 machine. As such, a series of updates can be made:
 
-| Version            | FPS (Approx.) | Notes                                                                                                                |
-| ------------------ | ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| v1: Initial        | 40            | This is at depth=7, or 19,531 objects, with rotations, for comparison's sake.                                        |
-| v2: Flat Hierarchy | 48            | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures. |
+| Version                | FPS (Approx.) | Notes                                                                                                                                                |
+| ---------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1: Initial            | 40            | This is at depth=7, or 19,531 objects, with rotations, for comparison's sake.                                                                        |
+| v2: Flat Hierarchy     | 48            | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures.                                 |
+| v3: Procedural Drawing | 200           | Rather than render each sphere as a separate GameObject, we can procedurally draw them on the GPU and avoid any overhead of thousands of components. |
+| v4: Jobs               |               | Unity contains a system to automatically parallelize processes and aggressively optimize them. We'll use these to give more headroom for other code. |
 
 # License TL;DR
 
