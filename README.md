@@ -116,6 +116,15 @@ over to the GPU. As such, we can view them in much higher resolution:
 | ![img](img/gpu100.gif)  | Running at a resolution of 100, or 10,000 cubes, this runs at ~950 FPS on my machine's GPU. Clearly, the CPU is the bottleneck at high framerates.                                                               |
 | ![img](img/gpu1000.gif) | Running at a resolution of 1000, or 1 million cubes, this runs at ~400 FPS on my machine's GPU. Beefy! The visuals are hampered by the small point size, though, giving the image an unfortunately 'dusty' look. |
 
+Possibly the most annoying part of this implementation was working with all of
+the `#pragma` directives and handling them. Since they had to be manually made,
+and I had 18 unique functions, I had to manually declare all 324 functions (18
+unique functions, and the remainder 'morphing' kernels from one wave to
+another). Offloading the files into another compute shader file didn't seem to
+work either, so I'm stuck having long (1000+ LoC) compute shader files if making
+interesting tricks like these. In the future, I'll need to set up Python scripts
+to manually generate this code.
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
