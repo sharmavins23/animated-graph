@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 using static UnityEngine.Mathf;
 
 public static class FunctionLibrary {
     public delegate float Function(float x, float t);
-    static Function[] functions = { Wave, MultiWave, Ripple };
-    public enum FunctionName { Wave, MultiWave, Ripple };
+    static Function[] functions = { Wave, MultiWave, Ripple, Spider };
+    public enum FunctionName { Wave, MultiWave, Ripple, Spider };
 
     public static Function GetFunction(FunctionName name) {
         return functions[(int)name];
@@ -24,5 +25,9 @@ public static class FunctionLibrary {
         float d = Abs(x);
         float y = Sin(PI * (4f * d - t));
         return y / (1f + 10f * d);
+    }
+
+    public static float Spider(float x, float t) {
+        return x * Sin(PI * x * t);
     }
 }

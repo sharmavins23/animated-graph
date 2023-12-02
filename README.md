@@ -27,6 +27,11 @@ This wave is an addition of two sine waves.
 
 A more complicated addition of sinusoidal waves.
 
+![img](img/spiderWave.png)
+
+I created this interesting periodic function on a whim. It devolves into a
+spiraling 3D effect quickly.
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
