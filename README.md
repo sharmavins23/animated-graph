@@ -77,6 +77,16 @@ parametric surfaces.
 | ![img](img/Enneper.gif)       | Moving back to actual surfaces, this is the [Enneper surface](https://en.wikipedia.org/wiki/Enneper_surface). I found it through a rabbit hole of Weierstrass functions when I was playing with Surfaces of Revolution. |
 | ![img](img/duplinCyclide.gif) | When trying to implement a Duplin Cyclide (Sort of a croissant shape?), I happened upon the hyperbolic variety. It's still pretty, so I figured I'd leave it in.                                                        |
 
+## Part 3 - [Measuring Performance](https://catlikecoding.com/unity/tutorials/basics/measuring-performance/)
+
+This section contains a series of interesting statistics. I think my
+configuration of URP was inaccurate, however, as modifying particular parameters
+and setting up debuggers didn't work properly.
+
+However, the visual change in this section is the ability to morph the graph's
+points to other functions automagically. It's a fairly beautiful experience, so
+here's a small gif:
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a

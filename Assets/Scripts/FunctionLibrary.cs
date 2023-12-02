@@ -53,6 +53,23 @@ public static class FunctionLibrary {
         return functions[(int)name];
     }
 
+    public static FunctionName GetNextFunctionName(FunctionName name) {
+        return (FunctionName)(((int)name + 1) % functions.Length);
+    }
+
+    public static FunctionName GetRandomFunctionNameOtherThan(FunctionName name) {
+        Assert.IsTrue(functions.Length > 1, "Not enough functions to choose from.");
+        FunctionName newName = name;
+        while (newName == name) {
+            newName = (FunctionName)Random.Range(0, functions.Length);
+        }
+        return newName;
+    }
+
+    public static Vector3 Morph(float u, float v, float t, Function from, Function to, float progress) {
+        return Vector3.LerpUnclamped(from(u, v, t), to(u, v, t), SmoothStep(0f, 1f, progress));
+    }
+
     public static Vector3 Wave(float u, float v, float t) {
         Vector3 p;
 
