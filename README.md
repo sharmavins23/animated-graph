@@ -155,8 +155,8 @@ machine. As such, a series of updates can be made:
 
 | Version            | FPS (Approx.) | Notes                                                                                                                |
 | ------------------ | ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| v1: Initial        | 69            | This is at depth=7, or 19,531 objects, for comparison's sake.                                                        |
-| v2: Flat Hierarchy |               | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures. |
+| v1: Initial        | 40            | This is at depth=7, or 19,531 objects, with rotations, for comparison's sake.                                        |
+| v2: Flat Hierarchy | 48            | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures. |
 
 # License TL;DR
 
