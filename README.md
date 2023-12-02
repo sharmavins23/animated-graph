@@ -85,7 +85,9 @@ and setting up debuggers didn't work properly.
 
 However, the visual change in this section is the ability to morph the graph's
 points to other functions automagically. It's a fairly beautiful experience, so
-here's a small gif:
+here's a long GIF:
+
+![img](img/morphograph.gif)
 
 # License TL;DR
 
