@@ -30,16 +30,28 @@ Speaking of 3D...
 | Wave                         | Notes                                                                 |
 | ---------------------------- | --------------------------------------------------------------------- |
 | ![img](img/going3D.png)      | The project's core functionality was easily extended to 3 dimensions. |
-| ![img](img/diagonalWave.png) | Of course, the third dimension can be wrapped into the structure...   |
-| ![img](img/multiWaveXYZ.png) | Some interesting physical wave-like behavior can be seen here.        |
-| ![img](img/rippleXYZ.png)    | I love how this one 'drops' in a physical sense.                      |
-| ![img](img/crab.png)         | Extending the 'spider' to 3 dimensions returned to crab.              |
+| ![img](img/diagonalWave.gif) | Of course, the third dimension can be wrapped into the structure...   |
+| ![img](img/multiWaveXYZ.gif) | Some interesting physical wave-like behavior can be seen here.        |
+| ![img](img/rippleXYZ.gif)    | I love how this one 'drops' in a physical sense.                      |
+| ![img](img/crab.gif)         | Extending the 'spider' to 3 dimensions returned to crab.              |
 
 The next portion moved on from the XZ plane into more interesting meshes and
 surfaces with the UV coordinate space. This also allowed for a refactor of the
 code in order to change resolution on the fly:
 
-![img](img/vectorUVResolution.png)
+![img](img/vectorUVResolution.gif)
+
+Finally, this part of the project ended with creating spheres and perturbing
+their surfaces to make more complicated 3D objects. The following are a series
+of the spherical implementations:
+
+| Object                         | Notes                                                                 |
+| ------------------------------ | --------------------------------------------------------------------- |
+| ![img](img/sphere.png)         | A basic sphere surface.                                               |
+| ![img](img/bouncyBall.gif)     | Adding some time variance to the sphere...                            |
+| ![img](img/vertBands.png)      | The sphere's surface can also have bands.                             |
+| ![img](img/horizBands.png)     | The bands can go in different directions...                           |
+| ![img](img/twistingSphere.gif) | Combining this vertical and horizontal nature yields a pretty visual. |
 
 # License TL;DR
 

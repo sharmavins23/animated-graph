@@ -3,8 +3,28 @@ using static UnityEngine.Mathf;
 
 public static class FunctionLibrary {
     public delegate Vector3 Function(float u, float v, float t);
-    static Function[] functions = { Wave, MultiWave, Ripple, Spider };
-    public enum FunctionName { Wave, MultiWave, Ripple, Spider };
+    static Function[] functions = {
+        Wave,
+        MultiWave,
+        Ripple,
+        Spider,
+        Sphere,
+        BouncyBall,
+        VerticalBandedSphere,
+        HorizontalBandedSphere,
+        TwistingSphere
+    };
+    public enum FunctionName {
+        Wave,
+        MultiWave,
+        Ripple,
+        Spider,
+        Sphere,
+        BouncyBall,
+        VerticalBandedSphere,
+        HorizontalBandedSphere,
+        TwistingSphere
+    };
 
     public static Function GetFunction(FunctionName name) {
         return functions[(int)name];
@@ -22,6 +42,7 @@ public static class FunctionLibrary {
 
     public static Vector3 MultiWave(float u, float v, float t) {
         Vector3 p;
+
         p.x = u;
         float y = Sin(PI * (u + 0.5f + t));
         y += 0.5f * Sin(2f * PI * (v + t));
@@ -34,6 +55,7 @@ public static class FunctionLibrary {
 
     public static Vector3 Ripple(float u, float v, float t) {
         Vector3 p;
+
         p.x = u;
         float d = Sqrt(u * u + v * v);
         float y = Sin(PI * (4f * d - t));
@@ -45,9 +67,69 @@ public static class FunctionLibrary {
 
     public static Vector3 Spider(float u, float v, float t) {
         Vector3 p;
+
         p.x = u;
         p.y = u * v * Sin(PI * u * v * t);
         p.z = v;
+
+        return p;
+    }
+
+    public static Vector3 Sphere(float u, float v, float t) {
+        Vector3 p;
+
+        float r = Cos(0.5f * PI * v);
+        p.x = r * Sin(PI * u);
+        p.y = Sin(PI * 0.5f * v);
+        p.z = r * Cos(PI * u);
+
+        return p;
+    }
+
+    public static Vector3 BouncyBall(float u, float v, float t) {
+        Vector3 p;
+
+        float r = 0.5f + 0.5f * Sin(PI * t);
+        float s = r * Cos(0.5f * PI * v);
+        p.x = s * Sin(PI * u);
+        p.y = r * Sin(PI * 0.5f * v);
+        p.z = s * Cos(PI * u);
+
+        return p;
+    }
+
+    public static Vector3 VerticalBandedSphere(float u, float v, float t) {
+        Vector3 p;
+
+        float r = 0.9f + 0.1f * Sin(8f * PI * u);
+        float s = r * Cos(0.5f * PI * v);
+        p.x = s * Sin(PI * u);
+        p.y = r * Sin(PI * 0.5f * v);
+        p.z = s * Cos(PI * u);
+
+        return p;
+    }
+
+    public static Vector3 HorizontalBandedSphere(float u, float v, float t) {
+        Vector3 p;
+
+        float r = 0.9f + 0.1f * Sin(8f * PI * v);
+        float s = r * Cos(0.5f * PI * v);
+        p.x = s * Sin(PI * u);
+        p.y = r * Sin(PI * 0.5f * v);
+        p.z = s * Cos(PI * u);
+
+        return p;
+    }
+
+    public static Vector3 TwistingSphere(float u, float v, float t) {
+        Vector3 p;
+
+        float r = 0.9f + 0.1f * Sin(PI * (6f * u + 4f * v + t));
+        float s = r * Cos(0.5f * PI * v);
+        p.x = s * Sin(PI * u);
+        p.y = r * Sin(PI * 0.5f * v);
+        p.z = s * Cos(PI * u);
 
         return p;
     }
