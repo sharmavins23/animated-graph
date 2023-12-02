@@ -36,7 +36,10 @@ Speaking of 3D...
 | ![img](img/crab.png)         | Extending the 'spider' to 3 dimensions returned to crab.              |
 
 The next portion moved on from the XZ plane into more interesting meshes and
-surfaces.
+surfaces with the UV coordinate space. This also allowed for a refactor of the
+code in order to change resolution on the fly:
+
+![img](img/vectorUVResolution.png)
 
 # License TL;DR
 
