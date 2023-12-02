@@ -12,7 +12,10 @@ public static class FunctionLibrary {
         BouncyBall,
         VerticalBandedSphere,
         HorizontalBandedSphere,
-        TwistingSphere
+        TwistingSphere,
+        SpindleTorus,
+        RingTorus,
+        SpiralStar
     };
     public enum FunctionName {
         Wave,
@@ -23,7 +26,10 @@ public static class FunctionLibrary {
         BouncyBall,
         VerticalBandedSphere,
         HorizontalBandedSphere,
-        TwistingSphere
+        TwistingSphere,
+        SpindleTorus,
+        RingTorus,
+        SpiralStar
     };
 
     public static Function GetFunction(FunctionName name) {
@@ -129,6 +135,44 @@ public static class FunctionLibrary {
         float s = r * Cos(0.5f * PI * v);
         p.x = s * Sin(PI * u);
         p.y = r * Sin(PI * 0.5f * v);
+        p.z = s * Cos(PI * u);
+
+        return p;
+    }
+
+    public static Vector3 SpindleTorus(float u, float v, float t) {
+        Vector3 p;
+
+        float r = 1f;
+        float s = 0.5f + r * Cos(PI * v);
+        p.x = s * Sin(PI * u);
+        p.y = r * Sin(PI * v);
+        p.z = s * Cos(PI * u);
+
+        return p;
+    }
+
+    public static Vector3 RingTorus(float u, float v, float t) {
+        Vector3 p;
+
+        float r1 = 0.75f;
+        float r2 = 0.25f;
+        float s = r1 + r2 * Cos(PI * v);
+        p.x = s * Sin(PI * u);
+        p.y = r2 * Sin(PI * v);
+        p.z = s * Cos(PI * u);
+
+        return p;
+    }
+
+    public static Vector3 SpiralStar(float u, float v, float t) {
+        Vector3 p;
+
+        float r1 = 0.7f + 0.1f * Sin(PI * (6f * u + 0.5f * t));
+        float r2 = 0.15f + 0.05f * Sin(PI * (8f * u + 4f * v + 2f * t));
+        float s = r1 + r2 * Cos(PI * v);
+        p.x = s * Sin(PI * u);
+        p.y = r2 * Sin(PI * v);
         p.z = s * Cos(PI * u);
 
         return p;

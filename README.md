@@ -53,6 +53,16 @@ of the spherical implementations:
 | ![img](img/horizBands.png)     | The bands can go in different directions...                           |
 | ![img](img/twistingSphere.gif) | Combining this vertical and horizontal nature yields a pretty visual. |
 
+Toroidal shapes were also added:
+
+| Object                         | Notes                                                                                          |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| ![img](img/spindle.png)        | A basic self-intersecting spindle torus was step 1.                                            |
+| ![img](img/ringTorus.png)      | Pulling the inner radius apart reveals a proper ring toroidal shape.                           |
+| ![img](img/torusLowRes.png)    | An artifact of the maths means decreasing the resolution results in these skeletal rings.      |
+| ![img](img/spiralStar.gif)     | Applying some funky time variance to the radii creates this beautiful optical illusion.        |
+| ![img](img/illusionRuined.gif) | Decreasing the resolution shows the star isn't spinning - It's just concentric stars rotating. |
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
