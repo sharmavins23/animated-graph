@@ -19,18 +19,21 @@ Render Pipeline (URP) for speed-ups as well.
 
 This section starts off with implementing other waves:
 
-![img](img/multiWave.png)
+| Wave                       | Notes                                                                                                           |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| ![img](img/multiWave.png)  | This wave is an addition of two sine waves.                                                                     |
+| ![img](img/rippleWave.png) | A more complicated addition of sinusoidal waves.                                                                |
+| ![img](img/spiderWave.png) | I created this interesting 'spider' periodic function on a whim. It devolves into aspiraling 3D effect quickly. |
 
-This wave is an addition of two sine waves.
+Speaking of 3D...
 
-![img](img/rippleWave.png)
-
-A more complicated addition of sinusoidal waves.
-
-![img](img/spiderWave.png)
-
-I created this interesting periodic function on a whim. It devolves into a
-spiraling 3D effect quickly.
+| Wave                         | Notes                                                                 |
+| ---------------------------- | --------------------------------------------------------------------- |
+| ![img](img/going3D.png)      | The project's core functionality was easily extended to 3 dimensions. |
+| ![img](img/diagonalWave.png) | Of course, the third dimension can be wrapped into the structure...   |
+| ![img](img/multiWaveXYZ.png) | Some interesting physical wave-like behavior can be seen here.        |
+| ![img](img/rippleXYZ.png)    | I love how this one 'drops' in a physical sense.                      |
+| ![img](img/crab.png)         | Extending the 'spider' to 3 dimensions returned to crab.              |
 
 # License TL;DR
 
