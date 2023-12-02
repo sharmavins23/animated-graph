@@ -125,6 +125,39 @@ work either, so I'm stuck having long (1000+ LoC) compute shader files if making
 interesting tricks like these. In the future, I'll need to set up Python scripts
 to manually generate this code.
 
+## Part 5 - [Jobs](https://catlikecoding.com/unity/tutorials/basics/jobs/)
+
+The first portion of this step was creating fractals. The fractal effectively
+formed the Sierpinski triangle, but due to its recursive hierarchical nature, it
+had to be rendered on the GPU. The following are some of my performance tests:
+
+| Image                    | FPS (Approx.) | Object Count | Notes                                                    |
+| ------------------------ | ------------- | ------------ | -------------------------------------------------------- |
+| ![img](img/fractal1.png) | 950           | 1            | Just a sphere.                                           |
+| ![img](img/fractal2.png) | 950           | 6            | Adding faces on each side...                             |
+| ![img](img/fractal3.png) | 930           | 31           | A bit more complicated.                                  |
+| ![img](img/fractal4.png) | 900           | 156          | That's starting to look correct.                         |
+| ![img](img/fractal5.png) | 650           | 781          | FPS has started to tank.                                 |
+| ![img](img/fractal6.png) | 290           | 3906         | Clearly a Sierpinski triangle.                           |
+| ![img](img/fractal7.png) | 69            | 19531        | Performance has dropped below my monitor's refresh rate. |
+| ![img](img/fractal8.png) | 10            | 97656        | A noticeable freeze occurred when adding the last layer. |
+| ![img](img/fractal9.png) | 2             | 488281       | This almost crashed Unity.                               |
+
+In my opinion there are obvious visual benefits to increasing depth. However,
+the CPU has to handle computing all of these things twice (with URP) - One cast
+for the object, and one cast for the shadow. As such, performance severely
+degrades quickly. This problem exacerbates with rotations on fractals:
+
+![img](img/rotatingFractal.gif)
+
+At a depth of 7, or 19,531 objects, this cuts the FPS down from 69 to 40 on my
+machine. As such, a series of updates can be made:
+
+| Version            | FPS (Approx.) | Notes                                                                                                                |
+| ------------------ | ------------- | -------------------------------------------------------------------------------------------------------------------- |
+| v1: Initial        | 69            | This is at depth=7, or 19,531 objects, for comparison's sake.                                                        |
+| v2: Flat Hierarchy |               | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures. |
+
 # License TL;DR
 
 This project is distributed under the MIT license. This is a paraphrasing of a
