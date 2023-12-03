@@ -2,7 +2,7 @@
 
 This project is a follow-along of
 [Jasper Flick's Catlike Coding](https://catlikecoding.com/) Unity
-[basics]https://catlikecoding.com/unity/tutorials/basics/) tutorials. This
+[basics](https://catlikecoding.com/unity/tutorials/basics/) tutorials. This
 repository covers the projects from Building a Graph all the way up to Organic
 Variety.
 

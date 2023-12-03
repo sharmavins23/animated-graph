@@ -2,8 +2,11 @@ using UnityEngine;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using Unity.VisualScripting;
+using Unity.Mathematics;
 
+using static Unity.Mathematics.math;
+using float4x4 = Unity.Mathematics.float4x4;
+using quaternion = Unity.Mathematics.quaternion;
 
 public class Fractal : MonoBehaviour {
     [SerializeField, Range(1, 9)] int depth = 4;
@@ -13,13 +16,7 @@ public class Fractal : MonoBehaviour {
 
     static MaterialPropertyBlock propertyBlock;
 
-    static Vector3[] directions = {
-        Vector3.up,
-        Vector3.right,
-        Vector3.left,
-        Vector3.forward,
-        Vector3.back
-    };
+    static Vector3[] directions = { up(), right(), left(), forward(), back() };
     static Quaternion[] rotations = {
         Quaternion.identity,
         Quaternion.Euler(0f, 0f, -90f),
