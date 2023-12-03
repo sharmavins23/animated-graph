@@ -153,13 +153,26 @@ degrades quickly. This problem exacerbates with rotations on fractals:
 At a depth of 7, or 19,531 objects, this cuts the FPS down from 69 to 40 on my
 machine. As such, a series of updates can be made:
 
-| Version                  | FPS (Approx.) | Notes                                                                                                                                                |
-| ------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v1: Initial              | 40            | This is at depth=7, or 19,531 objects, with rotations, for comparison's sake.                                                                        |
-| v2: Flat Hierarchy       | 48            | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures.                                 |
-| v3: Procedural Drawing   | 200           | Rather than render each sphere as a separate GameObject, we can procedurally draw them on the GPU and avoid any overhead of thousands of components. |
-| v4: Jobs                 | 460           | Unity contains a system to automatically parallelize processes and aggressively optimize them. We'll use these to give more headroom for other code. |
-| v5: Optimizing for Burst | 800           | Unity's Burst compiler can be much more aggressive with our job system, so we optimize our data types with that in mind.                             |
+| Version                  | FPS (Approx.) | Notes                                                                                                                                                     |
+| ------------------------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v1: Initial              | 40            | This is at depth=7, or 19,531 objects, with rotations, for comparison's sake.                                                                             |
+| v2: Flat hierarchy       | 48            | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures.                                      |
+| v3: Procedural drawing   | 200           | Rather than render each sphere as a separate GameObject, we can procedurally draw them on the GPU and avoid any overhead of thousands of components.      |
+| v4: Jobs                 | 460           | Unity contains a system to automatically parallelize processes and aggressively optimize them. We'll use these to give more headroom for other code.      |
+| v5: Optimizing for Burst | 800           | Unity's Burst compiler can be much more aggressive with our job system, so we optimize our data types with that in mind.                                  |
+| v6: Sending less data    | 830           | The matrices we send to the GPU always have the same vector on the bottom row. As such, we don't have to send it, reducing our data transfer by 25% size. |
+| v7: Using multiple cores | 900           | This is all running on one singular CPU core. Let's use multiple.                                                                                         |
+
+Our implementation is much faster, and we're left with a far more performant
+result.
+
+![img](img/fasterFractal.gif)
+
+## Part 6 - [Organic Variety](https://catlikecoding.com/unity/tutorials/basics/organic-variety/)
+
+Now that our fractal is much faster, we can make it look a bit more 'life-like'.
+In my opinion, I quite like the alien nature of the structure, so I'll play with
+the colors.
 
 # License TL;DR
 
