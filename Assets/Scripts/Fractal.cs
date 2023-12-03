@@ -16,29 +16,29 @@ public class Fractal : MonoBehaviour {
 
     static MaterialPropertyBlock propertyBlock;
 
-    static Vector3[] directions = { up(), right(), left(), forward(), back() };
-    static Quaternion[] rotations = {
-        Quaternion.identity,
-        Quaternion.Euler(0f, 0f, -90f),
-        Quaternion.Euler(0f, 0f, 90f),
-        Quaternion.Euler(90f, 0f, 0f),
-        Quaternion.Euler(-90f, 0f, 0f)
+    static float3[] directions = { up(), right(), left(), forward(), back() };
+    static quaternion[] rotations = {
+        quaternion.identity,
+        quaternion.RotateZ(-0.5f * PI),
+        quaternion.RotateZ(0.5f * PI),
+        quaternion.RotateX(0.5f * PI),
+        quaternion.RotateX(-0.5f * PI)
     };
     struct FractalPart {
-        public Vector3 direction;
-        public Vector3 worldPosition;
-        public Quaternion rotation;
-        public Quaternion worldRotation;
+        public float3 direction;
+        public float3 worldPosition;
+        public quaternion rotation;
+        public quaternion worldRotation;
         public float spinAngle;
     }
 
     NativeArray<FractalPart>[] parts;
-    NativeArray<Matrix4x4>[] matrices;
+    NativeArray<float4x4>[] matrices;
     ComputeBuffer[] matricesBuffers;
 
     static readonly int matricesID = Shader.PropertyToID("_Matrices");
 
-    [BurstCompile(CompileSynchronously = true)]
+    [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]
     struct UpdateFractalLevelJob : IJobFor {
         public float spinAngleDelta;
         public float scale;
@@ -48,30 +48,34 @@ public class Fractal : MonoBehaviour {
         public NativeArray<FractalPart> parts;
 
         [WriteOnly]
-        public NativeArray<Matrix4x4> matrices;
+        public NativeArray<float4x4> matrices;
 
         public void Execute(int i) {
             FractalPart parent = parents[i / 5];
             FractalPart part = parts[i];
 
             part.spinAngle += spinAngleDelta;
-            part.worldRotation = parent.worldRotation * (part.rotation * Quaternion.Euler(0f, part.spinAngle, 0f));
-            part.worldPosition = parent.worldPosition + parent.worldRotation * (1.5f * scale * part.direction);
+            part.worldRotation = mul(
+                parent.worldRotation,
+                mul(part.rotation, quaternion.RotateY(part.spinAngle))
+            );
+            part.worldPosition = parent.worldPosition +
+                mul(parent.worldRotation, 1.5f * scale * part.direction);
             parts[i] = part;
 
-            matrices[i] = Matrix4x4.TRS(part.worldPosition, part.worldRotation, scale * Vector3.one);
+            matrices[i] = float4x4.TRS(part.worldPosition, part.worldRotation, float3(scale));
         }
     }
 
     void OnEnable() {
         parts = new NativeArray<FractalPart>[depth];
-        matrices = new NativeArray<Matrix4x4>[depth];
+        matrices = new NativeArray<float4x4>[depth];
         matricesBuffers = new ComputeBuffer[depth];
 
         int stride = 16 * sizeof(float);
         for (int i = 0, length = 1; i < parts.Length; i++, length *= 5) {
             parts[i] = new NativeArray<FractalPart>(length, Allocator.Persistent);
-            matrices[i] = new NativeArray<Matrix4x4>(length, Allocator.Persistent);
+            matrices[i] = new NativeArray<float4x4>(length, Allocator.Persistent);
             matricesBuffers[i] = new ComputeBuffer(length, stride);
         }
 
@@ -106,15 +110,18 @@ public class Fractal : MonoBehaviour {
     }
 
     void Update() {
-        float spinAngleDelta = 22.5f * Time.deltaTime;
+        float spinAngleDelta = 0.125f * PI * Time.deltaTime;
 
         FractalPart rootPart = parts[0][0];
         rootPart.spinAngle += spinAngleDelta;
-        rootPart.worldRotation = transform.rotation * (rootPart.rotation * Quaternion.Euler(0f, rootPart.spinAngle, 0f));
+        rootPart.worldRotation = mul(
+            transform.rotation,
+            mul(rootPart.rotation, quaternion.RotateY(rootPart.spinAngle))
+        );
         rootPart.worldPosition = transform.position;
         parts[0][0] = rootPart;
         float objectScale = transform.lossyScale.x;
-        matrices[0][0] = Matrix4x4.TRS(rootPart.worldPosition, rootPart.worldRotation, objectScale * Vector3.one);
+        matrices[0][0] = float4x4.TRS(rootPart.worldPosition, rootPart.worldRotation, float3(objectScale));
 
         float scale = objectScale;
         JobHandle jobHandle = default;

@@ -159,7 +159,7 @@ machine. As such, a series of updates can be made:
 | v2: Flat Hierarchy       | 48            | Rather than recursively nesting objects, placing them flatly in Unity's hierarchy speeds up its internal procedures.                                 |
 | v3: Procedural Drawing   | 200           | Rather than render each sphere as a separate GameObject, we can procedurally draw them on the GPU and avoid any overhead of thousands of components. |
 | v4: Jobs                 | 460           | Unity contains a system to automatically parallelize processes and aggressively optimize them. We'll use these to give more headroom for other code. |
-| v5: Optimizing for Burst |               | Unity's Burst compiler can be much more aggressive with our job system, so we optimize with it in mind.                                              |
+| v5: Optimizing for Burst | 800           | Unity's Burst compiler can be much more aggressive with our job system, so we optimize our data types with that in mind.                             |
 
 # License TL;DR
 
