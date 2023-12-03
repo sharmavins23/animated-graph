@@ -129,7 +129,7 @@ to manually generate this code.
 
 The first portion of this step was creating fractals. The fractal effectively
 formed the Sierpinski triangle, but due to its recursive hierarchical nature, it
-had to be rendered on the GPU. The following are some of my performance tests:
+had to be calculated on the CPU. The following are some of my performance tests:
 
 | Image                    | FPS (Approx.) | Object Count | Notes                                                    |
 | ------------------------ | ------------- | ------------ | -------------------------------------------------------- |
