@@ -1,4 +1,9 @@
 using UnityEngine;
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.VisualScripting;
+
 
 public class Fractal : MonoBehaviour {
     [SerializeField, Range(1, 9)] int depth = 4;
@@ -30,27 +35,52 @@ public class Fractal : MonoBehaviour {
         public float spinAngle;
     }
 
-    FractalPart[][] parts;
-    Matrix4x4[][] matrices;
+    NativeArray<FractalPart>[] parts;
+    NativeArray<Matrix4x4>[] matrices;
     ComputeBuffer[] matricesBuffers;
 
     static readonly int matricesID = Shader.PropertyToID("_Matrices");
 
+    [BurstCompile(CompileSynchronously = true)]
+    struct UpdateFractalLevelJob : IJobFor {
+        public float spinAngleDelta;
+        public float scale;
+
+        [ReadOnly]
+        public NativeArray<FractalPart> parents;
+        public NativeArray<FractalPart> parts;
+
+        [WriteOnly]
+        public NativeArray<Matrix4x4> matrices;
+
+        public void Execute(int i) {
+            FractalPart parent = parents[i / 5];
+            FractalPart part = parts[i];
+
+            part.spinAngle += spinAngleDelta;
+            part.worldRotation = parent.worldRotation * (part.rotation * Quaternion.Euler(0f, part.spinAngle, 0f));
+            part.worldPosition = parent.worldPosition + parent.worldRotation * (1.5f * scale * part.direction);
+            parts[i] = part;
+
+            matrices[i] = Matrix4x4.TRS(part.worldPosition, part.worldRotation, scale * Vector3.one);
+        }
+    }
+
     void OnEnable() {
-        parts = new FractalPart[depth][];
-        matrices = new Matrix4x4[depth][];
+        parts = new NativeArray<FractalPart>[depth];
+        matrices = new NativeArray<Matrix4x4>[depth];
         matricesBuffers = new ComputeBuffer[depth];
 
         int stride = 16 * sizeof(float);
         for (int i = 0, length = 1; i < parts.Length; i++, length *= 5) {
-            parts[i] = new FractalPart[length];
-            matrices[i] = new Matrix4x4[length];
+            parts[i] = new NativeArray<FractalPart>(length, Allocator.Persistent);
+            matrices[i] = new NativeArray<Matrix4x4>(length, Allocator.Persistent);
             matricesBuffers[i] = new ComputeBuffer(length, stride);
         }
 
         parts[0][0] = CreatePart(0);
         for (int li = 1; li < parts.Length; li++) {
-            FractalPart[] levelParts = parts[li];
+            NativeArray<FractalPart> levelParts = parts[li];
 
             for (int fpi = 0; fpi < levelParts.Length; fpi += 5) {
                 for (int ci = 0; ci < 5; ci++) levelParts[fpi + ci] = CreatePart(ci);
@@ -63,6 +93,8 @@ public class Fractal : MonoBehaviour {
     void OnDisable() {
         for (int i = 0; i < matricesBuffers.Length; i++) {
             matricesBuffers[i].Release();
+            parts[i].Dispose();
+            matrices[i].Dispose();
         }
         matricesBuffers = null;
         matrices = null;
@@ -88,24 +120,18 @@ public class Fractal : MonoBehaviour {
         matrices[0][0] = Matrix4x4.TRS(rootPart.worldPosition, rootPart.worldRotation, objectScale * Vector3.one);
 
         float scale = objectScale;
+        JobHandle jobHandle = default;
         for (int li = 1; li < parts.Length; li++) {
             scale *= 0.5f;
-            FractalPart[] parentParts = parts[li - 1];
-            FractalPart[] levelParts = parts[li];
-            Matrix4x4[] levelMatrices = matrices[li];
-
-            for (int fpi = 0; fpi < levelParts.Length; fpi++) {
-                FractalPart parent = parentParts[fpi / 5];
-                FractalPart part = levelParts[fpi];
-
-                part.spinAngle += spinAngleDelta;
-                part.worldRotation = parent.worldRotation * (part.rotation * Quaternion.Euler(0f, part.spinAngle, 0f));
-                part.worldPosition = parent.worldPosition + parent.worldRotation * (1.5f * scale * part.direction);
-                levelParts[fpi] = part;
-
-                levelMatrices[fpi] = Matrix4x4.TRS(part.worldPosition, part.worldRotation, scale * Vector3.one);
-            }
+            jobHandle = new UpdateFractalLevelJob {
+                spinAngleDelta = spinAngleDelta,
+                scale = scale,
+                parents = parts[li - 1],
+                parts = parts[li],
+                matrices = matrices[li]
+            }.Schedule(parts[li].Length, jobHandle);
         }
+        jobHandle.Complete();
 
         // Upload matrices to the GPU
         Bounds bounds = new(rootPart.worldPosition, 3f * objectScale * Vector3.one);
