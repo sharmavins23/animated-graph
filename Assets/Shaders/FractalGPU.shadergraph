@@ -5,9 +5,6 @@
     "m_Properties": [
         {
             "m_Id": "b225e93f80b94761b5dd074125f6f081"
-        },
-        {
-            "m_Id": "3672d8b9a12f4e86a5f0d79b5fc01a6f"
         }
     ],
     "m_Keywords": [],
@@ -56,9 +53,6 @@
         },
         {
             "m_Id": "f127c13bbb784dcba4411562d4f5b3da"
-        },
-        {
-            "m_Id": "6ef8fa09ccb54191b286cde7417a11ce"
         }
     ],
     "m_GroupDatas": [],
@@ -109,9 +103,9 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "6ef8fa09ccb54191b286cde7417a11ce"
+                    "m_Id": "574f45d6c29747538db8666b1f574942"
                 },
-                "m_SlotId": 0
+                "m_SlotId": 3
             },
             "m_InputSlot": {
                 "m_Node": {
@@ -361,36 +355,6 @@
 }
 
 {
-    "m_SGVersion": 3,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
-    "m_ObjectId": "3672d8b9a12f4e86a5f0d79b5fc01a6f",
-    "m_Guid": {
-        "m_GuidSerialized": "c45fcf0f-7f26-43e0-b54f-dba96800db7e"
-    },
-    "m_Name": "Base Color",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Base Color",
-    "m_DefaultReferenceName": "_Base_Color",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "r": 0.0,
-        "g": 0.0,
-        "b": 0.0,
-        "a": 0.0
-    },
-    "isMainColor": false,
-    "m_ColorMode": 0
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "376ca37a03ed443ead298c6ced147fd5",
@@ -549,6 +513,9 @@
         },
         {
             "m_Id": "2d653b088c7d4731a7a6bab017d1c555"
+        },
+        {
+            "m_Id": "9735a77557354833a8d1b4ddabcf7d5e"
         }
     ],
     "synonyms": [
@@ -623,51 +590,12 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "6ef8fa09ccb54191b286cde7417a11ce",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -438.0,
-            "y": 7.000000953674316,
-            "width": 134.00003051757813,
-            "height": 34.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "b12522021c1241f0940aba20057bccb9"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "3672d8b9a12f4e86a5f0d79b5fc01a6f"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "746a04649a53404ba427610a3025fc6b",
     "m_Name": "",
     "m_ChildObjectList": [
         {
             "m_Id": "b225e93f80b94761b5dd074125f6f081"
-        },
-        {
-            "m_Id": "3672d8b9a12f4e86a5f0d79b5fc01a6f"
         }
     ]
 }
@@ -704,6 +632,31 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.NormalTS"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "9735a77557354833a8d1b4ddabcf7d5e",
+    "m_Id": 3,
+    "m_DisplayName": "FractalColor",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "FractalColor",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -751,31 +704,6 @@
     },
     "m_Labels": [],
     "m_Space": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
-    "m_ObjectId": "b12522021c1241f0940aba20057bccb9",
-    "m_Id": 0,
-    "m_DisplayName": "Base Color",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 0.0
-    },
-    "m_Labels": []
 }
 
 {

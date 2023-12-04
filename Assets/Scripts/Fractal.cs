@@ -3,15 +3,17 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
-
 using static Unity.Mathematics.math;
 using quaternion = Unity.Mathematics.quaternion;
+using Random = UnityEngine.Random;
 
 public class Fractal : MonoBehaviour {
-    [SerializeField, Range(1, 9)] int depth = 4;
+    [SerializeField, Range(2, 9)] int depth = 4;
 
-    [SerializeField] Mesh mesh;
+    [SerializeField] Mesh mesh, leafMesh;
     [SerializeField] Material material;
+    [SerializeField] Gradient gradientA, gradientB;
+    [SerializeField] Color leafColorA, leafColorB;
 
     static MaterialPropertyBlock propertyBlock;
 
@@ -34,8 +36,13 @@ public class Fractal : MonoBehaviour {
     NativeArray<FractalPart>[] parts;
     NativeArray<float3x4>[] matrices;
     ComputeBuffer[] matricesBuffers;
+    Vector4[] sequenceNumbers;
 
+    static readonly int colorAID = Shader.PropertyToID("_ColorA");
+    static readonly int colorBID = Shader.PropertyToID("_ColorB");
     static readonly int matricesID = Shader.PropertyToID("_Matrices");
+    static readonly int sequenceNumbersID = Shader.PropertyToID("_SequenceNumbers");
+
 
     [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]
     struct UpdateFractalLevelJob : IJobFor {
@@ -71,12 +78,14 @@ public class Fractal : MonoBehaviour {
         parts = new NativeArray<FractalPart>[depth];
         matrices = new NativeArray<float3x4>[depth];
         matricesBuffers = new ComputeBuffer[depth];
+        sequenceNumbers = new Vector4[depth];
 
         int stride = 12 * sizeof(float);
         for (int i = 0, length = 1; i < parts.Length; i++, length *= 5) {
             parts[i] = new NativeArray<FractalPart>(length, Allocator.Persistent);
             matrices[i] = new NativeArray<float3x4>(length, Allocator.Persistent);
             matricesBuffers[i] = new ComputeBuffer(length, stride);
+            sequenceNumbers[i] = new Vector4(Random.value, Random.value);
         }
 
         parts[0][0] = CreatePart(0);
@@ -100,6 +109,7 @@ public class Fractal : MonoBehaviour {
         matricesBuffers = null;
         matrices = null;
         parts = null;
+        sequenceNumbers = null;
     }
 
     void OnValidate() {
@@ -138,13 +148,37 @@ public class Fractal : MonoBehaviour {
         }
         jobHandle.Complete();
 
-        // Upload matrices to the GPU
         Bounds bounds = new(rootPart.worldPosition, 3f * objectScale * Vector3.one);
+
+        // Upload matrices to the GPU
+        int leafIndex = matricesBuffers.Length - 1;
         for (int i = 0; i < matricesBuffers.Length; i++) {
             ComputeBuffer buffer = matricesBuffers[i];
             buffer.SetData(matrices[i]);
+
+            Color colorA, colorB;
+            Mesh instanceMesh;
+            if (i == leafIndex) {
+                colorA = leafColorA;
+                colorB = leafColorB;
+                instanceMesh = leafMesh;
+            } else if (i == 0) { // Set the root to black to ignore the meshing bug
+                colorA = Color.black;
+                colorB = Color.black;
+                instanceMesh = mesh;
+            } else {
+                float gradientInterpolator = i / (matricesBuffers.Length - 1f);
+                colorA = gradientA.Evaluate(gradientInterpolator);
+                colorB = gradientB.Evaluate(gradientInterpolator);
+                instanceMesh = mesh;
+            }
+
+            propertyBlock.SetColor(colorAID, colorA);
+            propertyBlock.SetColor(colorBID, colorB);
+
             propertyBlock.SetBuffer(matricesID, buffer);
-            Graphics.DrawMeshInstancedProcedural(mesh, 0, material, bounds, buffer.count, propertyBlock);
+            propertyBlock.SetVector(sequenceNumbersID, sequenceNumbers[i]);
+            Graphics.DrawMeshInstancedProcedural(instanceMesh, 0, material, bounds, buffer.count, propertyBlock);
         }
     }
 

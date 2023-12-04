@@ -164,15 +164,28 @@ machine. As such, a series of updates can be made:
 | v7: Using multiple cores | 900           | This is all running on one singular CPU core. Let's use multiple.                                                                                         |
 
 Our implementation is much faster, and we're left with a far more performant
-result.
+result. A depth of 9 ended up getting about 41 FPS on my machine, which is
+significantly better than previous results.
 
 ![img](img/fasterFractal.gif)
 
 ## Part 6 - [Organic Variety](https://catlikecoding.com/unity/tutorials/basics/organic-variety/)
 
 Now that our fractal is much faster, we can make it look a bit more 'life-like'.
-In my opinion, I quite like the alien nature of the structure, so I'll play with
-the colors.
+In my opinion, I quite like the alien nature and shaping of the structure, so
+I'll play with the colors.
+
+| Image                              | Notes                                                                                                                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![img](img/grayscaleFractal.gif)   | The implementation of changing colors by hierarchy means that depth should be modified in order to not divide by zero.                                                       |
+| ![img](img/gradientFractal.gif)    | This kind of looks like a molecule. A strange artifact was occurring due tomeshes overlapping at the origin, which I decided to leave in as a feature (and ignore as a bug). |
+| ![img](img/instanceIdentifier.png) | This applies coloration through the GPU.                                                                                                                                     |
+| ![img](img/hashed.png)             | Applying an arbitrary modulo 'hashes' the output into looking more random.                                                                                                   |
+| ![img](img/weyl.png)               | Applying a Weyl sequence and reducing the depth further helps, but we still have this ugly vertical column.                                                                  |
+| ![img](img/randomFactors.png)      | Applying random offsets varies the numbers more. It does reintroduce that weird mesh error, though.                                                                          |
+| ![img](img/clowny.png)             | Re-introducing color can be done with two gradients, which are interpolated between. Neat!                                                                                   |
+| ![img](img/gradientEval.png)       | We can also specify particular colors for particular segments. The leaves here are green. I also set the base to black and ignored the meshing bug.                          |
+| ![img](img/cubeLeaves.png)         | Other than changing the color alone, we can also change the mesh on a per-level basis.                                                                                       |
 
 # License TL;DR
 
